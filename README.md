@@ -1,23 +1,23 @@
 # MatejaProject
 
-#Team Members
+# Team Members
 
-#Jared Bloch
+# Jared Bloch
 email:
 github:
-#Nicholas Ly
+# Nicholas Ly
 email:
 github:
-#Charles Cicchella
+# Charles Cicchella
 email:
 github:
-#Ryan Filipiak
+# Ryan Filipiak
 email:
 github:
-#Minh Pham
+# Minh Pham
 email:
 github:
-#Dat Nguyen
+# Dat Nguyen
 email:
 github:
 
