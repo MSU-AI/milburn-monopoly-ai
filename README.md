@@ -1,13 +1,14 @@
 # MatejaProject
 
 # Team Members
-<br/>
+<br />
+
 **Mateja Milicevic**
-<br/>
-email: **milicev2@msu.edu**
-<br/>
-github: **makibrte**
-<br/>
+<br />
+email: milicev2@msu.edu
+<br />
+github: makibrte
+<br />
 **Jared Bloch**
  <br />
 email:
