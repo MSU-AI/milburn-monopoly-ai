@@ -40,7 +40,7 @@ github: NhatMinh12
 
 **Dat Nguyen**
  <br />
-email:
+email: nguy1044@msu.edu
  <br />
-github:
+github: whenindan
 
