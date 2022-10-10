@@ -34,9 +34,9 @@ github:
 
 **Minh Pham**
  <br />
-email:
+email: phammin5@msu.edu
  <br />
-github:
+github: NhatMinh12
 
 **Dat Nguyen**
  <br />
