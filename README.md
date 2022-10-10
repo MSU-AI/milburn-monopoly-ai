@@ -28,9 +28,9 @@ github:
 
 **Ryan Filipiak**
  <br />
-email:
+email: filipi21@msu.edu
  <br />
-github:
+github: RyanFilipiak
 
 **Minh Pham**
  <br />
