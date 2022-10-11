@@ -22,9 +22,9 @@ github: nicholasdly
 
  **Charles Cicchella**
  <br />
-email:
+email: cicchel4@msu.edu
  <br />
-github:
+github: ccicchella
 
 **Ryan Filipiak**
  <br />
