@@ -10,9 +10,9 @@ github: makibrte
 
 **Jared Bloch**
  <br />
-email:
+email: blochjar@msu.edu
  <br />
-github:
+github: blochjared92
 
 **Nicholas Ly**
  <br />
