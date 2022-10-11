@@ -1,6 +1,6 @@
 # Milburn - Monopoly playing AI 
 
-# Team Members
+# Team Members Info
 
 **Mateja Milicevic**
 <br />
