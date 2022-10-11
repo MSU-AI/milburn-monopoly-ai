@@ -1,4 +1,4 @@
-# MatejaProject
+# Milburn - Monopoly playing AI 
 
 # Team Members
 
