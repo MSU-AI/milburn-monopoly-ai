@@ -1,20 +1,25 @@
 
 import pygame
 
+from Board import Board
+
 pygame.init()
+pygame.display.set_caption("Monopoly")
 
 class Game:
     """
     Represents the playable Monopoly game.
     """
 
-    WIDTH, HEIGHT = 800, 800
+    WIDTH, HEIGHT = 600, 600
 
     def __init__(self):
         """
         Intializes Monopoly game.
         """
         self.window = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
+        
+        # TODO: When Board.draw is defined, draw the board.
 
 def main():
     running = True
