@@ -24,16 +24,18 @@ class Tile:
         Initializes a Tile object.
         """
 
-        # TODO: Save any property attributes.
-        # TODO: Save which player(s) are on the current tile (if any).
+        # TODO: Save any specific tile attributes (property, jail, go, etc.)
+        #       Will want to store the CSV data here somehow.
+        
+        self.players = set()  # Set of players currently on tile
 
 class Board:
     """
     Represents the Monopoly game board.
     """
     
-    WIDTH, HEIGHT = 500, 500  # Board size
-
+    WIDTH, HEIGHT = 750, 750  # Board size
+    COLOR = (191, 219, 174)  # Board color
     LENGTH = 10  # The number of tiles on one side of the board.
     SIDES = 4  # The number of sides on the board.
 
@@ -48,5 +50,8 @@ class Board:
         """
         Draws the game board. 
         """
-        
-        # TODO: Draw game board.
+        self.window.fill(self.COLOR)
+
+        # TODO: Draw individual tiles here, preferably similar to an actual
+        #       Monopoly board (as rectangles around the perimeter).
+        #       Hint: Take a look at pygame.draw.rect()!
