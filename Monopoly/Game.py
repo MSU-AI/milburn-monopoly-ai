@@ -1,10 +1,11 @@
-
 import pygame
+
 
 from Board import Board
 
 pygame.init()
 pygame.display.set_caption("Monopoly")
+
 
 class Game:
     """

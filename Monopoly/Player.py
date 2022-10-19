@@ -1,4 +1,6 @@
-# TODO: Import all the other classes in here so you can use them
+from Bank import Bank
+from Board import Board
+from Property import Property
 class Player:
     """
     Represents a player in the Monopoly game.
@@ -24,5 +26,24 @@ class Player:
         pass
     def pay_Tax():
         pass
-    
+    def recieve_Go():
+        pass
+    def get_Worth():
+        pass
+    def mortgage():
+        pass
+    def unMortgage():
+        pass
+    def checkBankruptcy():
+        pass
+    def addDebt():
+        pass
+    def sell_House():
+        pass
+    def sell_Hotel():
+        pass
+    def buy_House():
+        pass
+    def buy_Hotel():
+        pass
     pass
