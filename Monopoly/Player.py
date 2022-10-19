@@ -1,4 +1,6 @@
-# TODO: Import all the other classes in here so you can use them
+from Bank import Bank
+from Board import Board
+from Property import Property
 class Player:
     """
     Represents a player in the Monopoly game.
