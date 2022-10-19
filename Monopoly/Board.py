@@ -12,9 +12,10 @@ class Tile:
         """
         Initializes a Tile object.
         """
-
+        
         # TODO: Save any property attributes.
-        # TODO: Save which player(s) are on the current tile (if any).
+
+        self.players = {}  # Set of players on tile
 
 class Board:
     """
