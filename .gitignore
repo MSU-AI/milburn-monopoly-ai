@@ -1,2 +1,4 @@
-# Ignores ALL directories named __pycache__
-__pycache__/
+
+# The following files and/or directories will not be saved into the repository:
+__pycache__
+.ipynb_checkpoints
