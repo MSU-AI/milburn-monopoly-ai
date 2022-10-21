@@ -1,12 +1,12 @@
 from Bank import Bank
 from Player import Player
-
+from Tile import Tile
 # TODO: MAKE THIS A CHILD CLASS OF TILES 
-class StreetTile:
+class StreetTile(Tile):
     """
     Represents a property in the Monopoly game.
     """
-    pass
+    
 
     """Initialize a property"""
 
@@ -21,7 +21,7 @@ class StreetTile:
         self.hotel_count = 0
         self.rent = rent
         self.color_group = color_group
-
+        super().__init__()
     # set the owner to a Player object
     def setOwner(self, Player):
         self.owner = Player
