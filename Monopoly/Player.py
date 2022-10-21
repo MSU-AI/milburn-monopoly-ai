@@ -32,34 +32,43 @@ class Player:
     def sellProperty():
         self.properties.remove(property)
     def drawCommunity_Chest():
-        pass
+        community_chest.draw()
     def drawChance():
-        pass
-    def payRent():
-        pass
+        chance.draw()
+    def payRent(property_landed_on):
+        balance -= property_landed_on.rent
     def payTax():
         pass
     def recieveGo():
         pass
     def getWorth():
         pass
-    def mortgage():
-        pass
-    def unMortgage():
-        pass
+    def mortgage(self, property_mortgage):
+        self.balance += property_morgage.value/2
+    def unMortgage(self, property_unmortgage):
+        self.balance -= property_unmortgage/2 + property_unmortgage*0.1
+        
     def checkBankruptcy(self):
         if self.property_value + balance < self.money_owed:
             self.bankrupt = True
-    def addDebt():
-        pass
-    def sellHouse():
-        pass
-    def sellHotel():
-        pass
-    def buyHouse():
-        pass
+    def addDebt(self, owe):
+        self.money_owed += owe
+    def sellHouse(self, property):
+        property_of_house_to_sell = next((obj for obj in self.properties if obj.name == property),None)
+        self.balance += property_of_house_to_sell.houses.value/2
+        property_of_house_to_sell.houses_available.append(hotel)
+    def sellHotel(self, hotel):
+        property_of_hotel_to_sell = next((obj for obj in self.properties if obj.name == property),None)
+        self.balance += property_of_hotel_to_sell.hotels.value/2
+        property_of_hotel_to_sell.houses_available.append(hotel)
+    def buyHouse(self, house):
+        property_of_house_to_sell = next((obj for obj in self.properties if obj.name == property),None)
+        self.balance -= property_of_house_to_sell.house.value
+        property_of_house_to_buy.houses_available.remove(house)
     def buyHotel():
-        pass
+        property_of_hotel_to_sell = next((obj for obj in self.properties if obj.name == property),None)
+        self.balance -= property_of_hotel_to_sell.hotel.value
+        property_of_hotel_to_buy.hotels_available.remove(hotel)    
     # TODO: In future, a way to print out the property price and current bid
     def bid_Auction(property, max_bid):
         bid = int(input())
