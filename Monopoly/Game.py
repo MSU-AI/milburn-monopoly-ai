@@ -12,21 +12,21 @@ class Game:
     Represents the playable Monopoly game.
     """
 
-    WIDTH, HEIGHT = 800, 800  # Window size
+    WIDTH, HEIGHT = 810, 810  # Window size
 
     def __init__(self):
         """
         Intializes the Monopoly game.
         """
         self.window = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
-        
+
         self.board = Board()
 
     def draw(self):
         """
         Draws game onto the window.
         """
-        self.board.draw(self.window)
+        self.board.draw(self.window, 20)
 
         pygame.display.update()
 

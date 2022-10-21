@@ -1,19 +1,28 @@
 
+import pygame
+
 class Tile:
     """
     Represents a tile on the board.
     """
 
-    WIDTH, HEIGHT = 40, 40  # Tile size
+    COLORS = {
+        'black' : (0, 0, 0)
+    }
+    WIDTH, HEIGHT = 70, 70  # Tile size
 
-    def __init__(self):
+    def __init__(self, name=""):
         """
         Initializes the tile.
         """
-        pass
+        self.name = name
 
-    def draw(self, window):
+    def draw(self, window, x, y):
         """
         Draws the tile onto a specified window.
         """
-        pass
+        pygame.draw.rect(
+            window,
+            self.COLORS['black'],
+            (x, y, self.WIDTH, self.HEIGHT)
+        )
