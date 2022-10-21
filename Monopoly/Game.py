@@ -19,14 +19,14 @@ class Game:
         Intializes Monopoly game.
         """
         self.window = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
+        
+        self.board = Board(self.window)
 
     def draw(self):
         """
         Draws game onto window.
         """
-        # Draws board
-        board = Board(self.window)
-        board.draw()
+        self.board.draw()
 
         pygame.display.update()
 
