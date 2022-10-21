@@ -30,8 +30,7 @@ class Board:
         'board' : (219, 219, 219),
         'black' : (0, 0, 0)
     }
-    WIDTH, HEIGHT = 770, 770  # BOARD SIZE
-    FONT = pygame.font.SysFont(pygame.font.get_fonts()[73], 100)
+    FONT = pygame.font.SysFont(pygame.font.get_fonts()[73], 100)  # Title font
 
     def __init__(self):
         """
