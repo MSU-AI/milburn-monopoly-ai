@@ -1,49 +1,71 @@
 from Bank import Bank
 from Board import Board
 from Property import Property
+
+
 class Player:
     """
     Represents a player in the Monopoly game.
     """
+
     # TODO: initialize the player so that he has default starting money, position
     # TODO: Also initialize list for properties 
     def __init__(self):
         pass
+
     # TODO: FINISH METHODS BELOW
-    def rollDice():
+    def rollDice(self):
         pass
-    def updatePos():
+
+    def updatePos(self):
         pass
-    def buyProperty():
+
+    def buyProperty(self):
         pass
-    def sellProperty():
-        pass 
-    def draw_Community_Chest():
+
+    def sellProperty(self):
         pass
-    def draw_Chance():
+
+    def draw_Community_Chest(self):
         pass
-    def pay_Rent():
+
+    def draw_Chance(self):
         pass
-    def pay_Tax():
+
+    def pay_Rent(self):
         pass
-    def recieve_Go():
+
+    def pay_Tax(self):
         pass
-    def get_Worth():
+
+    def recieve_Go(self):
         pass
-    def mortgage():
+
+    def get_Worth(self):
         pass
-    def unMortgage():
+
+    def mortgage(self):
         pass
-    def checkBankruptcy():
+
+    def unMortgage(self):
         pass
-    def addDebt():
+
+    def checkBankruptcy(self):
         pass
-    def sell_House():
+
+    def addDebt(self):
         pass
-    def sell_Hotel():
+
+    def sell_House(self):
         pass
-    def buy_House():
+
+    def sell_Hotel(self):
         pass
-    def buy_Hotel():
+
+    def buy_House(self):
         pass
+
+    def buy_Hotel(self):
+        pass
+
     pass
