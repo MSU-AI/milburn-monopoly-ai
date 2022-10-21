@@ -14,21 +14,21 @@ class Player:
         pass
     def updatePos():
         pass
-    def buyProperty():
+    def buyProperty(property):
         pass
     def sellProperty():
         pass 
-    def draw_Community_Chest():
+    def drawCommunity_Chest():
         pass
-    def draw_Chance():
+    def drawChance():
         pass
-    def pay_Rent():
+    def payRent():
         pass
-    def pay_Tax():
+    def payTax():
         pass
-    def recieve_Go():
+    def recieveGo():
         pass
-    def get_Worth():
+    def getWorth():
         pass
     def mortgage():
         pass
@@ -38,12 +38,16 @@ class Player:
         pass
     def addDebt():
         pass
-    def sell_House():
+    def sellHouse():
         pass
-    def sell_Hotel():
+    def sellHotel():
         pass
-    def buy_House():
+    def buyHouse():
         pass
-    def buy_Hotel():
+    def buyHotel():
         pass
+    # TODO: In future, a way to print out the property price and current bid
+    def bid_Auction(property, max_bid):
+        bid = int(input())
+        return bid
     pass
