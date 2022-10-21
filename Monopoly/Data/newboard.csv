@@ -1,41 +1,41 @@
-,Name,Space,Color,Position(X),Position(Y),Price,PriceBuild,Rent,RentBuild1,RentBuild2,RentBuild3,RentBuild4,RentBuild5,Number
-0,Go,Go,None,0,0,0,0,0,0,0,0,0,0,0
-1,Mediterranean Avenue,Street,Brown,0,1,60,50,2,10,30,90,160,250,2
-2,Community Chest,Chest,None,0,2,0,0,0,0,0,0,0,0,0
-3,Baltic Avenue,Street,Brown,0,3,60,50,4,20,60,180,320,450,2
-4,Income Tax,Tax,None,0,4,200,0,200,0,0,0,0,0,0
-5,Reading Railroad,Railroad,None,0,5,200,0,25,0,0,0,0,0,0
-6,Oriental Avenue,Street,LightBlue,0,6,100,50,6,30,90,270,400,550,3
-7,Chance,Chance,None,0,7,0,0,0,0,0,0,0,0,0
-8,Vermont Avenue,Street,LightBlue,0,8,100,50,6,30,90,270,400,550,3
-9,Connecticut Avenue,Street,LightBlue,0,9,120,50,8,40,100,300,450,600,3
-10,Jail,Jail,None,1,0,0,0,0,0,0,0,0,0,0
-11,St. Charles Place,Street,Pink,1,1,140,100,10,50,150,450,625,750,3
-12,Electric Company,Utility,None,1,2,150,0,4,0,0,0,0,0,0
-13,States Avenue,Street,Pink,1,3,140,100,10,50,150,450,625,750,3
-14,Virginia Avenue,Street,Pink,1,4,160,100,12,60,180,500,700,900,3
-15,Pennsylvania Railroad,Railroad,None,1,5,200,0,25,0,0,0,0,0,0
-16,St. James Place,Street,Orange,1,6,180,100,14,70,200,550,750,950,3
-17,Community Chest,Chest,None,1,7,0,0,0,0,0,0,0,0,0
-18,Tennessee Avenue,Street,Orange,1,8,180,100,14,70,200,550,750,950,3
-19,New York Avenue,Street,Orange,1,9,200,100,16,80,220,600,800,1000,3
-20,Free Parking,Parking,None,2,0,0,0,0,0,0,0,0,0,0
-21,Kentucky Avenue,Street,Red,2,1,220,150,18,90,250,700,875,1050,3
-22,Chance,Chance,None,2,2,0,0,0,0,0,0,0,0,0
-23,Indiana Avenue,Street,Red,2,3,220,150,18,90,250,700,875,1050,3
-24,Illinois Avenue,Street,Red,2,4,240,150,20,100,300,750,925,1100,3
-25,B. & O. Railroad,Railroad,None,2,5,200,0,25,0,0,0,0,0,0
-26,Atlantic Avenue,Street,Yellow,2,6,260,150,22,110,330,800,975,1150,3
-27,Ventnor Avenue,Street,Yellow,2,7,260,150,22,110,330,800,975,1150,3
-28,Water Works,Utility,None,2,8,150,0,4,0,0,0,0,0,0
-29,Marvin Gardens,Street,Yellow,2,9,280,150,24,120,360,850,1025,1200,3
-30,Go To Jail,GoToJail,None,3,0,0,0,0,0,0,0,0,0,0
-31,Pacific Avenue,Street,Green,3,1,300,200,26,130,390,900,1100,1275,3
-32,North Carolina Avenue,Street,Green,3,2,300,200,26,130,390,900,1100,1275,3
-33,Community Chest,Chest,None,3,3,0,0,0,0,0,0,0,0,0
-34,Pennsylvania Avenue,Street,Green,3,4,320,200,28,150,450,1000,1200,1400,3
-35,Short Line,Railroad,None,3,5,200,0,25,0,0,0,0,0,0
-36,Chance,Chance,None,3,6,0,0,0,0,0,0,0,0,0
-37,Park Place,Street,Blue,3,7,350,200,35,175,500,1100,1300,1500,2
-38,Luxury Tax,Tax,None,3,8,100,0,75,0,0,0,0,0,0
-39,Boardwalk,Street,Blue,3,9,400,200,50,200,600,1400,1700,2000,2
+Name,Space,Color,Position(X),Position(Y),Price,PriceBuild,Rent,RentBuild1,RentBuild2,RentBuild3,RentBuild4,RentBuild5,Number
+Go,Go,None,0,0,0,0,0,0,0,0,0,0,0
+Mediterranean Avenue,Street,Brown,0,1,60,50,2,10,30,90,160,250,2
+Community Chest,Chest,None,0,2,0,0,0,0,0,0,0,0,0
+Baltic Avenue,Street,Brown,0,3,60,50,4,20,60,180,320,450,2
+Income Tax,Tax,None,0,4,200,0,200,0,0,0,0,0,0
+Reading Railroad,Railroad,None,0,5,200,0,25,0,0,0,0,0,0
+Oriental Avenue,Street,LightBlue,0,6,100,50,6,30,90,270,400,550,3
+Chance,Chance,None,0,7,0,0,0,0,0,0,0,0,0
+Vermont Avenue,Street,LightBlue,0,8,100,50,6,30,90,270,400,550,3
+Connecticut Avenue,Street,LightBlue,0,9,120,50,8,40,100,300,450,600,3
+Jail,Jail,None,1,0,0,0,0,0,0,0,0,0,0
+St. Charles Place,Street,Pink,1,1,140,100,10,50,150,450,625,750,3
+Electric Company,Utility,None,1,2,150,0,4,0,0,0,0,0,0
+States Avenue,Street,Pink,1,3,140,100,10,50,150,450,625,750,3
+Virginia Avenue,Street,Pink,1,4,160,100,12,60,180,500,700,900,3
+Pennsylvania Railroad,Railroad,None,1,5,200,0,25,0,0,0,0,0,0
+St. James Place,Street,Orange,1,6,180,100,14,70,200,550,750,950,3
+Community Chest,Chest,None,1,7,0,0,0,0,0,0,0,0,0
+Tennessee Avenue,Street,Orange,1,8,180,100,14,70,200,550,750,950,3
+New York Avenue,Street,Orange,1,9,200,100,16,80,220,600,800,1000,3
+Free Parking,Parking,None,2,0,0,0,0,0,0,0,0,0,0
+Kentucky Avenue,Street,Red,2,1,220,150,18,90,250,700,875,1050,3
+Chance,Chance,None,2,2,0,0,0,0,0,0,0,0,0
+Indiana Avenue,Street,Red,2,3,220,150,18,90,250,700,875,1050,3
+Illinois Avenue,Street,Red,2,4,240,150,20,100,300,750,925,1100,3
+B. & O. Railroad,Railroad,None,2,5,200,0,25,0,0,0,0,0,0
+Atlantic Avenue,Street,Yellow,2,6,260,150,22,110,330,800,975,1150,3
+Ventnor Avenue,Street,Yellow,2,7,260,150,22,110,330,800,975,1150,3
+Water Works,Utility,None,2,8,150,0,4,0,0,0,0,0,0
+Marvin Gardens,Street,Yellow,2,9,280,150,24,120,360,850,1025,1200,3
+Go To Jail,GoToJail,None,3,0,0,0,0,0,0,0,0,0,0
+Pacific Avenue,Street,Green,3,1,300,200,26,130,390,900,1100,1275,3
+North Carolina Avenue,Street,Green,3,2,300,200,26,130,390,900,1100,1275,3
+Community Chest,Chest,None,3,3,0,0,0,0,0,0,0,0,0
+Pennsylvania Avenue,Street,Green,3,4,320,200,28,150,450,1000,1200,1400,3
+Short Line,Railroad,None,3,5,200,0,25,0,0,0,0,0,0
+Chance,Chance,None,3,6,0,0,0,0,0,0,0,0,0
+Park Place,Street,Blue,3,7,350,200,35,175,500,1100,1300,1500,2
+Luxury Tax,Tax,None,3,8,100,0,75,0,0,0,0,0,0
+Boardwalk,Street,Blue,3,9,400,200,50,200,600,1400,1700,2000,2
