@@ -1,23 +1,36 @@
 from Bank import Bank
 from Board import Board
 from Property import Property
+import random
 class Player:
-    """
-    Represents a player in the Monopoly game.
-    """
     # TODO: initialize the player so that he has default starting money, position
     # TODO: Also initialize list for properties 
-    def __init__(self):
+    def __init__(self, name, balance, position, money_owed, bankrupt):
+        self.name = name
+        self.balance = balance
+        self.position = position
+        self.money_owed = money_owed
+        self.bankrupt = False
+        self.properties = []
+        self.property_value = 0
+        self.calculate_properties_value()
         pass
     # TODO: FINISH METHODS BELOW
+    def calculate_properties_value(self):
+        for property in self.properties:
+            self.property_value += property.value
+    
     def rollDice():
-        pass
+        dice1 = random.randint(1,6)
+        dice2 = random.randint(1,6)
+        movecount = dice1+dice1
+        
     def updatePos():
         pass
     def buyProperty(property):
-        pass
+        self.properties.append(property)
     def sellProperty():
-        pass 
+        self.properties.remove(property)
     def drawCommunity_Chest():
         pass
     def drawChance():
@@ -34,8 +47,9 @@ class Player:
         pass
     def unMortgage():
         pass
-    def checkBankruptcy():
-        pass
+    def checkBankruptcy(self):
+        if self.property_value + balance < self.money_owed:
+            self.bankrupt = True
     def addDebt():
         pass
     def sellHouse():
