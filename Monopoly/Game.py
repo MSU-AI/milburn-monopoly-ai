@@ -29,7 +29,14 @@ class Game:
         self.board.draw(self.window, 20)
 
         pygame.display.update()
-
+    
+    def compareUtilites(self):
+        electric = self.board[1][2]
+        water = self.board[2][8]
+        if electric.owner == water.owner:
+            currentTile.getRent(player,diceroll * 10)
+        else:
+            currentTile.getRent(player,diceroll * 4)
 def main():
     running = True
     game = Game()
