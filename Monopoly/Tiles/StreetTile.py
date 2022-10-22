@@ -1,27 +1,50 @@
-from Bank import Bank
-from Player import Player
-from Tile import Tile
-# TODO: MAKE THIS A CHILD CLASS OF TILES 
+
+from Tiles.Tile import Tile
+
+import pygame
+
 class StreetTile(Tile):
     """
-    Represents a property in the Monopoly game.
+    Represents a street tile in the Monopoly game.
     """
-    
 
-    """Initialize a property"""
+    def __init__(self, attributes: dict):
+        """
+        Initializes a street tile.
+        """
+        super().__init__()
 
-    def __init__(self, name, price, mortgage_value, pos, rent, color_group):
-        self.name = name
-        self.owner = Bank
-        self.price = price
-        self.mortgage_value = mortgage_value
-        self.is_mortgaged = False
-        self.pos = pos
+        # Constant attributes
+        self.name = attributes['Name']
+        self.color = attributes['Color']
+        self.tile_price = attributes['Price']
+        self.build_price = attributes['PriceBuild']
+        self.rent = (
+            attributes['Rent'],
+            attributes['RentBuild1'],
+            attributes['RentBuild2'],
+            attributes['RentBuild3'],
+            attributes['RentBuild4'],
+            attributes['RentBuild5']
+        )
+
+        # Dynamic attributes
+        self.owner = None
         self.house_count = 0
         self.hotel_count = 0
-        self.rent = rent
-        self.color_group = color_group
-        super().__init__()
+        # self.mortgage_value = mortgage_value
+        # self.is_mortgaged = False
+
+    def draw(self, window: pygame.Surface, x: int, y: int):
+        """
+        Draws the tile onto a specified window.
+        """
+        pygame.draw.rect(
+            window,
+            self.COLORS[self.color],
+            (x, y, self.WIDTH, self.HEIGHT)
+        )
+
     # set the owner to a Player object
     def setOwner(self, Player):
         self.owner = Player
