@@ -61,26 +61,26 @@ class Board:
                 if s == 0:
                     tile.draw(
                         window,
-                        padding + t * tile.WIDTH,
-                        padding
+                        padding + board_width - (t + 1) * tile.WIDTH,
+                        padding + board_height - tile.HEIGHT
                     )
                 elif s == 1:
                     tile.draw(
                         window,
-                        padding + board_width - tile.WIDTH,
-                        padding + t * tile.HEIGHT
+                        padding,
+                        padding + board_height - (t + 1) * tile.HEIGHT
                     )
                 elif s == 2:
                     tile.draw(
                         window,
-                        padding + board_width - (t + 1) * tile.WIDTH,
-                        padding + board_height - tile.HEIGHT
+                        padding + t * tile.WIDTH,
+                        padding
                     )
                 elif s == 3:
                     tile.draw(
                         window,
-                        padding,
-                        padding + board_height - (t + 1) * tile.HEIGHT
+                        padding + board_width - tile.WIDTH,
+                        padding + t * tile.HEIGHT
                     )
 
     def make_board(self) -> list[list[Tile]]:
