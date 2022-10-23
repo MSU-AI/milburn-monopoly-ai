@@ -5,7 +5,7 @@ class GoTile(Tile):
     """
     Represents the "GO" tile on the board.
     """
-
+    #THIS TILE DOES NOT HAVE AN OWNER
     def __init__(self):
         """
         Initializes the "GO" tile.

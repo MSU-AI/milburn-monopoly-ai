@@ -10,4 +10,5 @@ class TaxTile(Tile):
         """
         Initializes the tax tile.
         """
+        self.owner = 'IRS'
         super().__init__()
