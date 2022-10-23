@@ -8,22 +8,44 @@ class Player:
     def __init__(self, name, balance, position, money_owed, bankrupt):
         self.name = name
         self.balance = balance
-        self.position = position
+        self.position = position #[0,0] initially
         self.money_owed = money_owed
         self.bankrupt = False
         self.properties = []
         self.property_value = 0
+        self.movecount = 0
         self.calculate_properties_value()
         pass
     # TODO: FINISH METHODS BELOW
     def calculate_properties_value(self):
         for property in self.properties:
             self.property_value += property.value
+    def move(self):
+        self.rollDice()
+        if self.position[1] + self.movecount <= 9:
+            self.position[1] += self.movecount
+         elif self.position[1] + self.movecount >9 and self.position[1] + self.movecount < 20:
+            if self.position[0]<3:
+                self.position[0]+=1
+            else:
+                self.position[0] = 3
+                self.position[1] = 20 - (position[1]+ self.movecount)
+         else:
+            if self.position[0] <2:
+                self.position[0]+=1
+            elif self.position[0] == 2:
+                self.position[0] = 1
+            else:
+                self.position[0] = 2
+            self.position[1] = self.position[1] + self.movecount -20
+            
+            
     
     def rollDice():
         dice1 = random.randint(1,6)
         dice2 = random.randint(1,6)
-        movecount = dice1+dice1
+        self.movecount = dice1+dice1
+
         
     def updatePos():
         pass
@@ -37,12 +59,6 @@ class Player:
         chance.draw()
     def payRent(property_landed_on):
         balance -= property_landed_on.rent
-    def payTax():
-        pass
-    def recieveGo():
-        pass
-    def getWorth():
-        pass
     def mortgage(self, property_mortgage):
         self.balance += property_morgage.value/2
     def unMortgage(self, property_unmortgage):
