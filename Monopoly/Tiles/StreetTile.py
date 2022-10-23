@@ -1,6 +1,6 @@
 from Player import Player
 from Tiles.Tile import Tile
-# TODO: MAKE THIS A CHILD CLASS OF TILES 
+
 class StreetTile(Tile):
     """
     Represents a street tile in the Monopoly game.
