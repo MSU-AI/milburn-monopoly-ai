@@ -1,12 +1,5 @@
-
+from Player import Player
 from Tiles.Tile import Tile
-
-import pygame
-
-# NOTE FROM MATEJA:
-#   QUICK REMAINDER, COLUMN IN THE DATA FRAME RentBuild5 MEANS RENT WHEN HOTEL IS BUILT, THINK OF A WAY TO IMPLEMENT THAT,
-#   MY SUGGESTION WOULD BE AN ARRAY OF PRICES AS ATTRIBUTE AND DEPENDING ON NUM OF BUILDS RETRIEVE CORRESPONDING VALUE
-#   FOR EXAMPLE: BALTIC AVENUE -> RENTS[4,20,60,180,320,450] , BUILD = 3, RENT = RENTS[BUILD]
 
 class StreetTile(Tile):
     """
@@ -19,40 +12,21 @@ class StreetTile(Tile):
         """
         super().__init__()
 
-        # Constant attributes
-        self.name = attributes['Name']
-        self.color = attributes['Color']
-        self.tile_price = attributes['Price']
-        self.build_price = attributes['PriceBuild']
-        self.rent = (
-            attributes['Rent'],
-            attributes['RentBuild1'],
-            attributes['RentBuild2'],
-            attributes['RentBuild3'],
-            attributes['RentBuild4'],
-            attributes['RentBuild5']
-        )
-
-        # Dynamic attributes
-        self.owner = None
+    def __init__(self, name, price, mortgage_value, pos, rent, color_group, bank):
+        self.name = name
+        self.price = price
+        self.mortgage_value = mortgage_value
+        self.is_mortgaged = False
+        self.pos = pos
         self.house_count = 0
         self.hotel_count = 0
-        # self.mortgage_value = mortgage_value
-        # self.is_mortgaged = False
-
-    def draw(self, window: pygame.Surface, x: int, y: int):
-        """
-        Draws the tile onto a specified window.
-        """
-        pygame.draw.rect(
-            window,
-            self.COLORS[self.color],
-            (x, y, self.WIDTH, self.HEIGHT)
-        )
-
+        self.rent = rent
+        self.color_group = color_group
+        self.owner = bank
+        super().__init__()
     # set the owner to a Player object
-    def setOwner(self, Player):
-        self.owner = Player
+    def setOwner(self, player):
+        self.owner = player
 
     def addHouse(self):
         while self.house_count <= 4:

@@ -1,5 +1,6 @@
-
+from Tiles.ChestTile import ChestTile as chest
 from Tiles.Tile import Tile
+from inspect import getmembers, isfunction
 from Tiles.GoTile import GoTile
 from Tiles.StreetTile import StreetTile
 from Tiles.ChestTile import ChestTile
@@ -32,6 +33,9 @@ class Board:
         """
         Initializes the game board.
         """
+        
+        
+            
         # Initializes board as a list of the board's sides and tiles.
         self.board = self.make_board()
 

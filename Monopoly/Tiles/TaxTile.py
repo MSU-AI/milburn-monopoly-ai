@@ -9,6 +9,7 @@ class TaxTile(Tile):
         """
         Initializes the tax tile.
         """
+        self.owner = 'IRS'
         super().__init__()
         
     def draw(self, window: pygame.Surface, x: int, y: int):
