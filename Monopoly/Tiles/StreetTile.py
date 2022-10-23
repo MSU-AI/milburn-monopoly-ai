@@ -3,11 +3,14 @@ from Tiles.Tile import Tile
 # TODO: MAKE THIS A CHILD CLASS OF TILES 
 class StreetTile(Tile):
     """
-    Represents a property in the Monopoly game.
+    Represents a street tile in the Monopoly game.
     """
-    
 
-    """Initialize a property"""
+    def __init__(self, attributes: dict):
+        """
+        Initializes a street tile.
+        """
+        super().__init__()
 
     def __init__(self, name, price, mortgage_value, pos, rent, color_group, bank):
         self.name = name

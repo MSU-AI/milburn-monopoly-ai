@@ -1,16 +1,21 @@
 from Tiles.ChestTile import ChestTile as chest
 from Tiles.Tile import Tile
 from inspect import getmembers, isfunction
+from Tiles.GoTile import GoTile
+from Tiles.StreetTile import StreetTile
+from Tiles.ChestTile import ChestTile
+from Tiles.TaxTile import TaxTile
+from Tiles.RailroadTile import RailroadTile
+from Tiles.ChanceTile import ChanceTile
+from Tiles.JailTile import JailTile
+from Tiles.UtilityTile import UtilityTile
+from Tiles.ParkingTile import ParkingTile
+from Tiles.GoToJailTile import GoToJailTile
 
+import pandas as pd
 import pygame
 
 pygame.font.init()
-
-# import pandas as pd
-
-# def readCSV():
-#     df = pd.read_csv('Data/newboard.csv', delimiter=',')
-#     return df
 
 # # TODO: CREATE A FUNCTION THAT INITIALIZES ALL THE PROPERTIES
 # # CHECK OUT THE IPYNB IN THE ROOT DIRECOTRY TO SEE HOW THE DATA FRAME LOOKS, YOU PROBABLY WANT TO SEPARATE CREATION OF OBJECTS DEPENDING ON IS IT A STREET,
@@ -41,7 +46,7 @@ class Board:
         
             
         # Initializes board as a list of the board's sides and tiles.
-        self.board = [ [ Tile() for i in range(10) ] for j in range(4) ]
+        self.board = self.make_board()
 
     def draw(self, window, pad):
         """
@@ -56,9 +61,6 @@ class Board:
             window.get_width() / 2 - title.get_width() / 2,
             window.get_height() / 2 - title.get_height() / 2
         ))
-
-        # TODO: Currently drawing default Tiles; once all Tiles have been
-        #       implemented, that can be changed to draw the correct tiles!
 
         # Draw board tiles
         for s, side in enumerate(self.board):
@@ -91,3 +93,42 @@ class Board:
                         pad,
                         window.get_height() - pad - (t + 1) * tile.HEIGHT
                     )
+
+    def make_board(self):
+        """
+        Reads board information from CSV file.
+        """
+        data = pd.read_csv('Monopoly/Data/newboard.csv')
+        board = [ [], [], [], [] ]
+
+        for index, row in data.iterrows():
+            side = index // 10
+            attributes = dict(row)
+
+            # TODO: Currently uses default (empty) Tile constructors; should be
+            #       changed to take attributes as an argument (see line 110).
+
+            if row['Space'] == "Go":
+                board[side].append( GoTile() )
+            elif row['Space'] == "Street":
+                board[side].append( StreetTile(attributes) )
+            elif row['Space'] == "Chest":
+                board[side].append( ChestTile() )
+            elif row['Space'] == "Tax":
+                board[side].append( TaxTile() )
+            elif row['Space'] == "Railroad":
+                board[side].append( RailroadTile() )
+            elif row['Space'] == "Chance":
+                board[side].append( ChanceTile() )
+            elif row['Space'] == "Jail":
+                board[side].append( JailTile() )
+            elif row['Space'] == "Utility":
+                board[side].append( UtilityTile() )
+            elif row['Space'] == "Parking":
+                board[side].append( ParkingTile() )
+            elif row['Space'] == "GoToJail":
+                board[side].append( GoToJailTile() )
+            else:
+                raise KeyError(f"Invalid tile type in CSV: {row['Space']}")
+        
+        return board
