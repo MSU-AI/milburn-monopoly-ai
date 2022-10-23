@@ -1,3 +1,4 @@
+from inspect import getmembers, isfunction
 from Tiles.ChestTile import ChestTile as chest
 from Tiles.Tile import Tile
 from inspect import getmembers, isfunction
@@ -14,6 +15,7 @@ from Tiles.GoToJailTile import GoToJailTile
 
 import pandas as pd
 import pygame
+import random
 
 pygame.font.init()
 
@@ -38,6 +40,12 @@ class Board:
             
         # Initializes board as a list of the board's sides and tiles.
         self.board = self.make_board()
+        #Initializes the deck for the Community Chest
+        self.community = []
+        for func in getmembers(chest, isfunction):
+            self.community.append(func[1])
+        random.shuffle(self.community)
+        # TODO: Add attribute to store all the players in the game
 
     def draw(self, window: pygame.Surface):
         """
@@ -125,3 +133,13 @@ class Board:
                 raise KeyError(f"Invalid tile type in CSV: {row['Space']}")
         
         return board
+    """
+    Functions for drawing community chest and chance cards 
+    """
+    def drawCommunity(self, player):
+        func = self.community[0]
+        chest.func(player, self.players)
+        self.community.pop(0)
+        self.community.append(func)
+    def drawChance():
+        pass
