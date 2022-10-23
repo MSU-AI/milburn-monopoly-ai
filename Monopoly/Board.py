@@ -1,5 +1,6 @@
-
+from Tiles.ChestTile import ChestTile as chest
 from Tiles.Tile import Tile
+from inspect import getmembers, isfunction
 
 import pygame
 
@@ -36,6 +37,9 @@ class Board:
         """
         Initializes the game board.
         """
+        
+        
+            
         # Initializes board as a list of the board's sides and tiles.
         self.board = [ [ Tile() for i in range(10) ] for j in range(4) ]
 
