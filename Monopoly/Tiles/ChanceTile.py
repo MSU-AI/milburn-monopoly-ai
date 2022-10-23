@@ -1,4 +1,4 @@
-from Tile import Tile
+from Tiles.Tile import Tile
 from Bank import Bank
 from Player import Player
 
