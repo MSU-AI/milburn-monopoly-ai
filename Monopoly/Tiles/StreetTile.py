@@ -1,18 +1,19 @@
-from Bank import Bank
 from Player import Player
-from Tile import Tile
-# TODO: MAKE THIS A CHILD CLASS OF TILES 
+from Tiles.Tile import Tile
+
 class StreetTile(Tile):
     """
-    Represents a property in the Monopoly game.
+    Represents a street tile in the Monopoly game.
     """
-    
 
-    """Initialize a property"""
+    def __init__(self, attributes: dict):
+        """
+        Initializes a street tile.
+        """
+        super().__init__()
 
-    def __init__(self, name, price, mortgage_value, pos, rent, color_group):
+    def __init__(self, name, price, mortgage_value, pos, rent, color_group, bank):
         self.name = name
-        self.owner = Bank
         self.price = price
         self.mortgage_value = mortgage_value
         self.is_mortgaged = False
@@ -21,10 +22,11 @@ class StreetTile(Tile):
         self.hotel_count = 0
         self.rent = rent
         self.color_group = color_group
+        self.owner = bank
         super().__init__()
     # set the owner to a Player object
-    def setOwner(self, Player):
-        self.owner = Player
+    def setOwner(self, player):
+        self.owner = player
 
     def addHouse(self):
         while self.house_count <= 4:

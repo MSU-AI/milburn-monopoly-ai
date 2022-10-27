@@ -1,14 +1,5 @@
 
-from Tile import Tile
-from Bank import Bank
-from Player import Player
-from Game import Game
-
-
-#Electric Company / Water Works
-#price = 150
-#diceroll * 4 if one utility owned or 10 if both owned
-#code for the Electric Company and Water Works
+from Tiles.Tile import Tile
 
 class UtilityTile(Tile):
     """

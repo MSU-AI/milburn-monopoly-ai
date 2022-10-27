@@ -26,7 +26,7 @@ class Game:
         """
         Draws game onto the window.
         """
-        self.board.draw(self.window, 20)
+        self.board.draw(self.window)
 
         pygame.display.update()
     
