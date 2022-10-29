@@ -1,13 +1,18 @@
-
 from Tiles.Tile import Tile
-
-class GoTile(Tile):
+from Player import Player
+class GoTile(Tile, Player):
     """
     Represents the "GO" tile on the board.
     """
-    #THIS TILE DOES NOT HAVE AN OWNER
-    def __init__(self):
+
+    def __init__(self, attributes: dict):
         """
         Initializes the "GO" tile.
         """
         super().__init__()
+        self.name = attributes['Name']
+        self.position = attributes['Position(X)', 'Position(Y)']
+
+    def GO(self):
+        self.balance = self.balance + 200
+        return self.balance

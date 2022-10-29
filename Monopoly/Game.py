@@ -29,7 +29,15 @@ class Game:
         self.board.draw(self.window)
 
         pygame.display.update()
-
+    
+    #Needed to access the position of the tiles so I can calculate the rent correctly for the utility tiles
+    def compareUtilites(self):
+        electric = self.board[1][2]
+        water = self.board[2][8]
+        if electric.owner == water.owner:
+            currentTile.getRent(player,diceroll * 10)
+        else:
+            currentTile.getRent(player,diceroll * 4)
 def main():
     running = True
     game = Game()
