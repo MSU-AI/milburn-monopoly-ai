@@ -1,4 +1,7 @@
-import Property
+from Tiles.Tile import Tile
+from Tiles.StreetTile import StreetTile
+from Tiles.RailroadTile import RailroadTile
+from Tiles.UtilityTile import UtilityTile
 import numpy as np
 from Player import *
 class Bank:
@@ -7,6 +10,8 @@ class Bank:
     """
     def __init__(self):
         self.ownedProperty = np.array()
+        self.houses = 32
+        self.hotel = 12
     """
     This function gets called inside the Board, when it gets initialized
     """
@@ -26,7 +31,16 @@ class Bank:
                 max_bid[player] = max_bid[list(max_bid.keys())[0]]
                 max_bid[player] = current_bid[player]
                 property.setOwner(player)
-                          
+    def addHouse(self, n = 1):
+        self.houses += n
+    def sellHouse(self):
+        self.houses -= 1
+    def addHotel(self):
+        self.hotel += 1
+    def sellHotel(self):
+        self.hotel -= 1
+        
+                         
 
 
 

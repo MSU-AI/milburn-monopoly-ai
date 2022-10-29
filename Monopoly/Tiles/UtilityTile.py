@@ -18,7 +18,7 @@ class UtilityTile(Tile):
         self.mortgage_value = self.price/2
         self.is_mortgaged = False
         #self.position = attributes['Position(X)', 'Position(Y)']
-        self.position = [attributes.Position(X), attributes.Position(Y)]
+        self.position = [attributes['Position(X)'], attributes['Position(Y)']]
     
     #sets ownwer to player
     def setOwner(self, player):
@@ -37,6 +37,7 @@ class UtilityTile(Tile):
     #Morgages the property. Returns the mortgage value.
     def mortgage(self):
         self.is_mortgaged = True
+        self.owner.mortgage(self)
         return self.mortgage_value
 
     #Unmortgages the property. Returns the amount owed to bank value.
