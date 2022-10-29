@@ -1,23 +1,18 @@
-from Player import Player
 from Tiles.Tile import Tile
-
+import pygame
 class StreetTile(Tile):
     """
     Represents a street tile in the Monopoly game.
     """
 
-    def __init__(self, attributes: dict):
-        """
-        Initializes a street tile.
-        """
-        super().__init__()
+   
 
     def __init__(self,attributes, bank):
         self.name = attributes['Name']
         self.price = attributes['Price']
         self.mortgage_value = self.price / 2
         self.is_mortgaged = False
-        self.pos = self.position = [attributes['Position(X)'], attributes['Position(Y)']]
+        self.position = [attributes['Position(X)'], attributes['Position(Y)']]
         self.house_count = 0
         self.hotel_count = 0
         self.rent = [attributes['Rent'], 
@@ -28,7 +23,7 @@ class StreetTile(Tile):
             attributes['RentBuild5']
             ]
         self.price_build = attributes['PriceBuild']
-        self.color_group = attributes['Color']
+        self.color = attributes['Color']
         self.owner = bank
         super().__init__()
     # set the owner to a Player object
@@ -38,6 +33,15 @@ class StreetTile(Tile):
     """
     This function will be used to check all available houses to build a house on
     """
+    def draw(self, window: pygame.Surface, x: int, y: int):
+        """
+        Draws the tile onto a specified window.
+        """
+        pygame.draw.rect(
+            window,
+            self.COLORS[self.color],
+            (x, y, self.WIDTH, self.HEIGHT)
+        )
     def addHouseValidity(self, board):
         validity = True
         other_tiles = []
@@ -51,14 +55,14 @@ class StreetTile(Tile):
         
         if validity:
             
-            if (self.color_group == 'Blue' or self.color_group == 'Brown'):
-                if(((self.house_count + 1) - other_tiles[0].house_count <= 1) and (self.house_count + 1 > 4)):
+            if (other_tiles == 1):
+                if(((self.house_count + 1) - other_tiles[0].house_count <= 1) and (self.house_count + 1 <= 4)):
                     if(self.hotel_count == 0):
                         return True
                 else:
                     return False
             else:
-                if(((self.house_count + 1) - other_tiles[0].house_count <= 1) and (self.house_count + 1 > 4)):
+                if(((self.house_count + 1) - other_tiles[0].house_count <= 1) and (self.house_count + 1 <= 4)):
                     if((self.house_count + 1) - other_tiles[1].house_count <= 1):
                         return True
                     else:
@@ -114,7 +118,7 @@ class StreetTile(Tile):
 
         # worth of a property if it has 1 hotel (cost of 1 hotel = 1 house)
         elif self.house_count == 0 and self.hotel_count == 1:
-            if self.color_group == 'Brown' or self.color_group == 'Light Blue':
+            if self.color_group == 'Brown' or self.color_group == 'LightBlue':
                 return self.price + (self.house_count + 1) * 50 / 2
             elif self.color_group == 'Purple' or self.color_group == 'Orange':
                 return self.price + (self.house_count + 1) * 100 / 2

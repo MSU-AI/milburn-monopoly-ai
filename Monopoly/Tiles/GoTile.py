@@ -11,7 +11,7 @@ class GoTile(Tile, Player):
         """
         super().__init__()
         self.name = attributes['Name']
-        self.position = attributes['Position(X)', 'Position(Y)']
+        self.position = [attributes['Position(X)'],attributes['Position(Y)']]
 
     def GO(self):
         self.balance = self.balance + 200

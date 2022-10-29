@@ -1,5 +1,3 @@
-from Bank import Bank
-from Board import Board
 import random
 import numpy as np
 class Player:
@@ -18,7 +16,7 @@ class Player:
         self.movecount = 0
         self.bank = bank
 
-        pass
+        
     # TODO: FINISH METHODS BELOW
     def calculate_properties_value(self):
         for property in self.properties:
@@ -91,4 +89,5 @@ class Player:
     def bid_Auction(property, max_bid):
         bid = int(input())
         return bid
-    pass
+    def draw():
+        pass

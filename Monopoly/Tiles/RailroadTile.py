@@ -1,6 +1,4 @@
-from Tile import Tile
-from Bank import Bank
-from Player import Player
+from Tiles.Tile import Tile
 
 import pygame
 
@@ -10,7 +8,7 @@ class RailroadTile(Tile):
     Represents a railroad tile on the board.
     """
     
-    def __init__(self, attributes: dict):
+    def __init__(self, attributes: dict, bank):
         """
         Initializes the railroad tile.
         """
@@ -21,7 +19,7 @@ class RailroadTile(Tile):
         self.Rent = attributes["Rent"]
         self.Mortgage = False 
         
-        self.owner = Bank
+        self.owner = bank
         self.trainstation_count = 0
         super().__init__()
       
@@ -32,13 +30,13 @@ class RailroadTile(Tile):
         #$25 for one; $50 for two, $100 for three; $200 for four
         if self.owner == Bank:
             return 0
-        elif trainstation_count == 0:
+        elif self.trainstation_count == 0:
             return 25
-        elif trainstation_count == 1:
+        elif self.trainstation_count == 1:
             return 50
-        elif trainstation_count == 2:
+        elif self.trainstation_count == 2:
             return 100
-        elif trainstation_count == 4:
+        elif self.trainstation_count == 4:
             return 200
         else:
             return 0

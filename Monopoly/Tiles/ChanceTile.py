@@ -1,7 +1,5 @@
 from Tiles.Tile import Tile
-from Bank import Bank
-from Player import Player
-
+import pygame
 class ChanceTile(Tile):
     """
     Represents a "Chance" tile on the board.
@@ -12,6 +10,7 @@ class ChanceTile(Tile):
         Initializes the "Chance" tile.
         """
         super().__init__()
+        
         
     def drawCard(self):
         #where a random card will be draw by the player

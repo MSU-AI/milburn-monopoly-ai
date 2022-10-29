@@ -15,7 +15,8 @@ class Tile:
         'Red' : (255, 0, 0),
         'Yellow' : (255, 255, 51),
         'Green' : (0, 255, 0),
-        'Blue' : (0, 128, 255)
+        'Blue' : (0, 128, 255),
+        'DarkGreen' : (5, 98, 36)
     }
 
     WIDTH, HEIGHT = 70, 70  # Tile size
