@@ -112,9 +112,11 @@ class ChanceTile(Tile):
         player.pos = np.array([3,9])
         
     def boardChairman(player, players):
+        count = 0
         for payer in players:
             if(payer != player):
-                player.payTax(payer, 50)
+                count += 1
+        player.payTax(price = count*50)
                 
                 
     def buildingLoan(player):
