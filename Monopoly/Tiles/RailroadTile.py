@@ -12,11 +12,11 @@ class RailroadTile(Tile):
         Initializes the railroad tile.
         """
         super().__init__()
-        self.Name = attributes["Name"]
+        self.name = attributes["Name"]
         self.space = attributes['Space']
         self.price = attributes['Price']
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]  
-        self.Rent = attributes["Rent"]
+        self.rent = attributes["Rent"]
         self.mortgage_value = self.price/2
         self.Mortgage = False 
         self.owner = Bank
