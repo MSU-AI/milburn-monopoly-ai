@@ -23,54 +23,50 @@ class ChanceTile(Tile):
     
     
     def goIllinoisAve(player):
-        #need to check players current position to see if they pass go
-        if (player.pos == [0,7]):
+        if (player.position[0] == 0 and player.position[1] == 7):
             player.pos = np.array([2,4])
         
-        elif (player.pos == [2,2]):
+        elif (player.position[0] == 2 and player.position[1] == 2):
             player.pos = np.array([2,4])
         
-        elif (player.pos == [3,6])
+        elif (player.position[0] == 3 and player.position[1] == 6):
             player.pos = np.array([2,4])
             player.getMoney(200)
 
 
     def goCharlesPlace(self, player):
-        #need to check players current position to see if they pass go
-        if (player.pos == [0,7]):
+        if (player.position[0] == 0 and player.position[1] == 7):
             player.pos = np.array([1,1])
         
-        elif (player.pos == [2,2]):
+        elif (player.position[0] == 2 and player.position[1] == 2):
             player.pos = np.array([1,1])
             player.getMoney(200)
             
         
-        elif (player.pos == [3,6])
+        elif (player.position[0] == 3 and player.position[1] == 6):
             player.pos = np.array([1,1])
             player.getMoney(200)
 
 
     def goNearestUtility(self, player):
-        #need to check players current position to find closest ulitily
-        if (player.pos == [0,7]):
+        if (player.position[0] == 0 and player.position[1] == 7):
             player.pos = np.array([1,2])
         
-        elif (player.pos == [2,2]):
+        elif (player.position[0] == 2 and player.position[1] == 2):
             player.pos = np.array([2,8])
         
-        elif (player.pos == [3,6])
+        elif (player.position[0] == 3 and player.position[1] == 6):
             player.pos = np.array([1,2])    
     
     
     def goNearestRailRoad(player):
-        #need to check players current position to find closest railroad
-        if (player.pos == [0,7]):
+        if (player.position[0] == 0 and player.position[1] == 7):
             player.pos = np.array([1,5])
         
-        elif (player.pos == [2,2]):
+        elif (player.position[0] == 2 and player.position[1] == 2):
             player.pos = np.array([2,5])
         
-        elif (player.pos == [3,6])
+        elif (player.position[0] == 3 and player.position[1] == 6):
             player.pos = np.array([0,5])      
     
     def bankDividends(player):
@@ -86,14 +82,13 @@ class ChanceTile(Tile):
         
         
     def goBackThree(player):
-        #need to check players current position to see which tile they go back to
-        if (player.pos == [0,7]):
+        if (player.position[0] == 0 and player.position[1] == 7):
             player.pos = np.array([0,4])
         
-        elif (player.pos == [2,2]):
+        elif (player.position[0] == 2 and player.position[1] == 2):
             player.pos = np.array([1,9])
         
-        elif (player.pos == [3,6])
+        elif (player.position[0] == 3 and player.position[1] == 6):
             player.pos = np.array([3,3])
     
     def generalRepairs(player):
