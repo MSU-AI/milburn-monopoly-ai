@@ -110,7 +110,7 @@ class Board:
             #       changed to take attributes as an argument (see StreetTile).
 
             if row['Space'] == "Go":
-                board[side].append( GoTile(attributes) )
+                board[side].append( GoTile(attributes, len(self.players)) )
             elif row['Space'] == "Street":
                 board[side].append( StreetTile(attributes, self.bank) )
             elif row['Space'] == "Chest":

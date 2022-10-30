@@ -13,7 +13,7 @@ class RailroadTile(Tile):
         Initializes the railroad tile.
         """
         
-        self.Name = attributes["Name"]
+        self.name = attributes["Name"]
         self.Position_X = attributes["Position(X)"]
         self.Position_Y = attributes["Position(Y)"]
         self.Rent = attributes["Rent"]
@@ -21,6 +21,7 @@ class RailroadTile(Tile):
         
         self.owner = bank
         self.trainstation_count = 0
+        self.color = 'Red'
         super().__init__()
       
     def calcRent(self):

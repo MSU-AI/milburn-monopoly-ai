@@ -17,6 +17,7 @@ class UtilityTile(Tile):
         self.is_mortgaged = False
         #self.position = attributes['Position(X)', 'Position(Y)']
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]
+        self.color = 'DarkGreen'
     
     #sets ownwer to player
     def setOwner(self, player):

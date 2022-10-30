@@ -29,20 +29,11 @@ class StreetTile(Tile):
     # set the owner to a Player object
     def setOwner(self, player):
         self.owner = player
-
     """
     This function will be used to check all available houses to build a house on
     """
-    def draw(self, window: pygame.Surface, x: int, y: int):
-        """
-        Draws the tile onto a specified window.
-        """
-        pygame.draw.rect(
-            window,
-            self.COLORS[self.color],
-            (x, y, self.WIDTH, self.HEIGHT)
-        )
-    def addHouseValidity(self, board):
+    
+    def checkAddHouseValidity(self, board):
         validity = True
         other_tiles = []
         for tile in board.color_groups[self.color_group]:
@@ -140,24 +131,24 @@ class StreetTile(Tile):
     def addHotel(self, player):
         self.house_count = 0
         self.hotel_count = 1
-        player.payMoney(self.price_build)
         player.bank.addHouse(4)
 
-    def addHouse(self, player):
+    def addHouse(self):
         self.house_count += 1
-        player.payMoney(self.price_build)
-        player.bank.sellHouse()
+        
     def sellHotel(self, player):
         self.hotel_count = 0
         player.addMoney(self.price_build / 2)
         player.bank.addHotel()
 
     def mortgage(self, player):
-        if self.house_count == 0 and self.hotel_count == 0:
-            self.is_mortgaged = True
-            player.addMoney(self.mortgage_value)
-        else:
-            return False
+        
+        player.addMoney(self.mortgage_value)
+        player.bank.addHouse(self.house_count)
+        player.bank.addHotel(self.hotel_count)
+        self.is_mortgaged = True
+        self.house_count = 0
+        self.hotel_count = 0
 
     def unMortgage(self, player):
         self.is_mortgaged = False
@@ -168,3 +159,12 @@ class StreetTile(Tile):
             return self.rent[self.house_count]
         elif self.hotel_count == 1:
             return self.rent[-1]
+    def Bankruptcy(self, bank):
+        bank.addHouse(self.house_count)
+        bank.addHotel(self.hotel_count)
+        self.setOwner(bank)
+        self.house_count = 0
+        self.hotel_count = 0
+    def getMortVal(self):
+        return self.mortgage_value + self.house_count * self.price_build / 2 + self.hotel_count * self.price_build / 2
+        

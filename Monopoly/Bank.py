@@ -31,12 +31,13 @@ class Bank:
                 max_bid[player] = max_bid[list(max_bid.keys())[0]]
                 max_bid[player] = current_bid[player]
                 property.setOwner(player)
+    
     def addHouse(self, n = 1):
         self.houses += n
     def sellHouse(self):
         self.houses -= 1
-    def addHotel(self):
-        self.hotel += 1
+    def addHotel(self, n):
+        self.hotel += n
     def sellHotel(self):
         self.hotel -= 1
         

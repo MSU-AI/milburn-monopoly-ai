@@ -1,6 +1,6 @@
 
 import pygame
-
+pygame.font.init()
 class Tile:
     """
     Represents a tile on the board.
@@ -20,12 +20,22 @@ class Tile:
     }
 
     WIDTH, HEIGHT = 70, 70  # Tile size
+    FONT = pygame.font.SysFont('segoeui', 7, True)
 
-    def __init__(self, name: str = "tile_name"):
+    def __init__(self):
         """
         Initializes the tile.
         """
-        self.name = name
+        self.players_on_tile = 0
+    def goJail(player):
+        player.updatePos([1,0])
+    def addPlayer(self):
+        self.players_on_tile += 1
+    def removePlayer(self):
+        self.players_on_tile -= 1
+    def getPlayerOnTile(self):
+        return self.players_on_tile
+        
 
     def draw(self, window: pygame.Surface, x: int, y: int):
         """
@@ -33,7 +43,13 @@ class Tile:
         """
         pygame.draw.rect(
             window,
-            self.COLORS['Black'],
+            self.COLORS[self.color],
             (x, y, self.WIDTH, self.HEIGHT),
             2
         )
+
+        text = self.FONT.render( self.name, 1, self.COLORS['Black'] )
+        window.blit( text, (
+            x + self.WIDTH / 2 - text.get_width() / 2,
+            y + self.HEIGHT / 2 - text.get_height() / 2
+        ))

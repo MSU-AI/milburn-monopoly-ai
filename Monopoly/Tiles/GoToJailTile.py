@@ -12,12 +12,5 @@ class GoToJailTile(Tile):
         """
         super().__init__()
         self.color = 'Red'
-    def draw(self, window: pygame.Surface, x: int, y: int):
-        """
-        Draws the tile onto a specified window.
-        """
-        pygame.draw.rect(
-            window,
-            self.COLORS[self.color],
-            (x, y, self.WIDTH, self.HEIGHT)
-        )
+        self.name  = 'Go To Jail'
+        

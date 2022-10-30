@@ -16,6 +16,7 @@ class ChestTile(Tile):
         self.deck = []
         self.players = players
         self.color = 'DarkGreen'
+        self.name = 'Chance'
         super().__init__()
     def goToGo(player):
         player.pos = np.array([0,0])
