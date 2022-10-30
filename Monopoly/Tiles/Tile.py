@@ -1,6 +1,8 @@
 
 import pygame
 
+pygame.font.init()
+
 class Tile:
     """
     Represents a tile on the board.
@@ -20,11 +22,13 @@ class Tile:
 
     WIDTH, HEIGHT = 70, 70  # Tile size
 
-    def __init__(self, name: str = "tile_name"):
+    FONT = pygame.font.SysFont('segoeui', 12, True)  # Tile font
+
+    def __init__(self):
         """
         Initializes the tile.
         """
-        self.name = name
+        self.name = "undefined tile"
 
     def draw(self, window: pygame.Surface, x: int, y: int):
         """
@@ -36,3 +40,9 @@ class Tile:
             (x, y, self.WIDTH, self.HEIGHT),
             2
         )
+
+        text = self.FONT.render( self.name, 1, self.COLORS['Black'] )
+        window.blit( text, (
+            x + self.WIDTH / 2 - text.get_width() / 2,
+            y + self.HEIGHT / 2 - text.get_height() / 2
+        ))
