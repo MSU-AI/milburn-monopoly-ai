@@ -18,7 +18,7 @@ class RailroadTile(Tile):
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]  
         self.rent = attributes["Rent"]
         self.mortgage_value = self.price/2
-        self.Mortgage = False 
+        self.mortgage = False 
         self.owner = Bank
         self.trainstation_count = 0
       
@@ -45,7 +45,7 @@ class RailroadTile(Tile):
        return self.mortgage_value
    
     def unMortgage(self):
-       self.mortage = False
+       self.mortgage = False
        return self.mortgage_value * 1.1
     
     def buyTrainStation(self):
