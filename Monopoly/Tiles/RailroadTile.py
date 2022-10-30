@@ -2,9 +2,6 @@ from Tile import Tile
 from Bank import Bank
 from Player import Player
 
-import pygame
-
-
 class RailroadTile(Tile):
     """
     Represents a railroad tile on the board.
@@ -14,16 +11,16 @@ class RailroadTile(Tile):
         """
         Initializes the railroad tile.
         """
-        
+        super().__init__()
         self.Name = attributes["Name"]
-        self.Position_X = attributes["Position(X)"]
-        self.Position_Y = attributes["Position(Y)"]
+        self.space = attributes['Space']
+        self.price = attributes['Price']
+        self.position = [attributes['Position(X)'], attributes['Position(Y)']]  
         self.Rent = attributes["Rent"]
+        self.mortgage_value = self.price/2
         self.Mortgage = False 
-        
         self.owner = Bank
         self.trainstation_count = 0
-        super().__init__()
       
     def calcRent(self):
         #Rent when player lands on Train Station Tile
@@ -45,10 +42,11 @@ class RailroadTile(Tile):
    
     def mortgage(self):
        self.mortgage = True
-       return 100
+       return self.mortgage_value
    
     def unMortgage(self):
        self.mortage = False
+       return self.mortgage_value * 1.1
     
     def buyTrainStation(self):
         #Purchase Train Station Tile
