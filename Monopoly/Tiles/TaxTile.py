@@ -12,17 +12,7 @@ class TaxTile(Tile):
         self.owner = 'IRS'
         self.color = 'Black'
         super().__init__()
-        
-    def draw(self, window: pygame.Surface, x: int, y: int):
-        """
-        Draws the tile onto a specified window.
-        """
-        pygame.draw.rect(
-            window,
-            self.COLORS[self.color],
-            (x, y, self.WIDTH, self.HEIGHT)
-        )
-        
+ 
     def incomeTax(self):
         #if player lands on Income Tax tile
         return 200
