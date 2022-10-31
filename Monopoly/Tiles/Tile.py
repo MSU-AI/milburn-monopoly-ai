@@ -27,6 +27,16 @@ class Tile:
         Initializes the tile.
         """
         self.players_on_tile = 0
+        self.group_list = ['Black' ,'Brown' ,\
+        'LightBlue' ,
+        'Pink' ,
+        'Orange' ,
+        'Red' ,
+        'Yellow' ,
+        'Green' ,
+        'Blue']
+        self.group = self.group_list.index(self.color)
+        
     def goJail(player):
         player.updatePos([1,0])
     def addPlayer(self):

@@ -16,6 +16,7 @@ class Player:
         self.properties = []
         self.property_value = 0
         self.movecount = 0
+        self.worth = balance
         self.bank = bank
 
         
@@ -24,6 +25,14 @@ class Player:
         for property in self.properties:
             if property.is_mortgaged == False:
                 self.property_value += property.getMortVal()
+    def getWorth(self):
+        self.worth = self.balance + self.calculate_properties_value()
+        return self.worth
+    def getCurrentGroup(self, board):
+        tile = board.board[self.position[0]][self.position[1]]
+
+        return tile.group
+
     def move(self):
         self.rollDice()
         
@@ -106,7 +115,11 @@ class Player:
     def sellHouse(self, property):
         self.balance += property.sellHouse()
         self.bank.addHouse()
-    
+    def possibleRent(self):
+        possible_rent = 0
+        for tile in self.properties:
+            possible_rent += tile.calcRent()
+        return possible_rent
     def sellHotel(self, tile):
         tile.sellHotel(self, self.bank)
     
@@ -205,55 +218,7 @@ class Player:
         return mortgages
     """Execution of a Players Turn"""
     # TODO: Break this into smaller functions
-    def action(self,tile, game):
-        
-
-        print('Press N to End Turn')
-        while(pygame.key.get_pressed()[pygame.K_n] == False):
-            houses = self.possibleHouses(game.board)
-            hotels = self.possibleHotels(game.board)
-            mortgages = self.possibleMortgages()
-            self.buyProperty(tile, mortgages)
-            self.printHouses(houses)
-            self.printHotels(hotels)
-            self.printMortgage()
-            if (pygame.key.get_pressed()[pygame.K_h]):
-                index = int(input('Choose an index'))
-                self.printHouses()
-                if self.buyHouse(houses[index]) == False:
-                    loan = self.balance - houses[index].price_build
-                    if self.checkBankruptcy(loan) == False:
-                        option = input('D-Add Debt to Buy, M-To Mortgage')
-                        while(option != 'D' or option != 'M'):
-                            if(option == 'D'):
-                                res = self.addDebt(loan)
-                                self.buyHouse(houses[index])
-                                
-                            elif(option == 'M'):
-                                self.printMortgage(mortgages, loan)
-                                index = int(input('Choose an index'))
-                                mortgages[index].mortgage(self)
-                                self.buyHouse(houses[index])
-                    else:
-                        
-                        print('You are unable to buy this house as you cannot add more debt')
-                        
- 
-                else:
-                    pass
-
-
-
-
-                    
-            elif(pygame.key.get_pressed()[pygame.K_l]):
-                index = int(input('Choose an index'))
-                hotels[index].addHotel(self)
-            elif(pygame.key.get_pressed()[pygame.K_m]):
-                index = int(input('Choose an index'))
-            elif(pygame.key.get_pressed()[pygame.K_n]):
-                break
-        print('Turn ended')
+    
 
     """Checks for all Tiles that can add a house/hotel or they can be mortgaged"""
     def possibleHouses(self, board):

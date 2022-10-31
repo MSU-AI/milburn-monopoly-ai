@@ -36,7 +36,8 @@ class Board:
         Initializes the game board.
         """
         
-        self.players = players        
+        self.players = players
+        self.groups = dict()        
         self.bank = bank    
         # Initializes board as a list of the board's sides and tiles.
         self.board = self.make_board()
@@ -112,7 +113,12 @@ class Board:
             if row['Space'] == "Go":
                 board[side].append( GoTile(attributes, len(self.players)) )
             elif row['Space'] == "Street":
-                board[side].append( StreetTile(attributes, self.bank) )
+                tile = StreetTile(attributes, self.bank)
+                board[side].append(tile)
+                if(board.group[attributes['Color']]):
+                    board.group[attributes['Color']].append(tile)
+                else:
+                    board.group[attributes['Color']] = [tile]
             elif row['Space'] == "Chest":
                 board[side].append( ChestTile(attributes, self.players) )
             elif row['Space'] == "Tax":

@@ -10,11 +10,23 @@ class StreetTile(Tile):
     def __init__(self,attributes, bank):
         self.name = attributes['Name']
         self.price = attributes['Price']
+        
         self.mortgage_value = self.price / 2
         self.is_mortgaged = False
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]
+        self.type = attributes['Space']
         self.house_count = 0
         self.hotel_count = 0
+        self.color = attributes['Color']
+        self.group_list = ['Black' ,'Brown' ,\
+        'LightBlue' ,
+        'Pink' ,
+        'Orange' ,
+        'Red' ,
+        'Yellow' ,
+        'Green' ,
+        'Blue']
+        self.group = self.group_list.index(self.color) + 1
         self.rent = [attributes['Rent'], 
             attributes['RentBuild1'],
             attributes['RentBuild2'],
@@ -23,7 +35,7 @@ class StreetTile(Tile):
             attributes['RentBuild5']
             ]
         self.price_build = attributes['PriceBuild']
-        self.color = attributes['Color']
+        
         self.owner = bank
         super().__init__()
     # set the owner to a Player object
@@ -32,11 +44,17 @@ class StreetTile(Tile):
     """
     This function will be used to check all available houses to build a house on
     """
-    
+    def isCompletedGroup(self, board, player):
+        b = True
+        for tile in board.group[self.color]:
+            if(tile.owner  != player):
+                b = False
+            
+        return b
     def checkAddHouseValidity(self, board):
         validity = True
         other_tiles = []
-        for tile in board.color_groups[self.color_group]:
+        for tile in board.group[self.color]:
             
             if(tile.owner != self.owner):
                 validity = False
@@ -63,12 +81,12 @@ class StreetTile(Tile):
 
 
     """
-    Checks for all the tiles where a hotel can be built
+    Checks for all the tiles where a hotel can be built/sold
     """
     def addHotelValidity(self, board):
         validity = True
         other_tiles = []
-        for tile in board.color_groups[self.color_group]:
+        for tile in board.group[self.color]:
             
             if(tile.owner != self.owner):
                 validity = False
@@ -122,7 +140,7 @@ class StreetTile(Tile):
         else:
             return self.price
 
-    def sellHouse(self, player, n):
+    def sellHouse(self, player, n = 1):
         if self.house_count - n >= 0:
             self.house_count -= n
             player.bank.addHouse(n)
@@ -132,14 +150,19 @@ class StreetTile(Tile):
         self.house_count = 0
         self.hotel_count = 1
         player.bank.addHouse(4)
+        player.bank.sellHotel()
 
-    def addHouse(self):
+    def addHouse(self, player):
         self.house_count += 1
+        player.bank.sellHouse()
+
         
     def sellHotel(self, player):
         self.hotel_count = 0
         player.addMoney(self.price_build / 2)
         player.bank.addHotel()
+        self.house_count = 4
+        player.bank.sellHouse(4)
 
     def mortgage(self, player):
         
