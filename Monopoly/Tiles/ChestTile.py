@@ -13,13 +13,14 @@ class ChestTile(Tile):
         """
         Initializes the "Community Chest" tile.
         """
-        self.deck = []
+        #self.deck = []
         self.players = players
         self.color = 'DarkGreen'
         self.name = 'Chance'
         super().__init__()
     def goToGo(player):
-        player.pos = np.array([0,0])
+        
+        player.updatePos([0,0])
         player.getMoney(200)
     def bankError(player):
         player.addMoney(200)

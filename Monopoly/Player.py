@@ -238,7 +238,7 @@ class Player:
                         
                         print('You are unable to buy this house as you cannot add more debt')
                         
-
+ 
                 else:
                     pass
 
