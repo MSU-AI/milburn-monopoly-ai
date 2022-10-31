@@ -1,19 +1,21 @@
 import numpy as np
+import pygame
 import random
-from Tile import Tile
+from Tiles.Tile import Tile
 from Player import Player
-from JailTile import JailTile
+from Tiles.JailTile import JailTile
 class ChestTile(Tile):
     """
     Represents a "Community Chest" tile on the board.
     """
 
-    def __init__(self):
+    def __init__(self, attributes, players):
         """
         Initializes the "Community Chest" tile.
         """
         self.deck = []
-        self.players = np.array([])
+        self.players = players
+        self.color = 'DarkGreen'
         super().__init__()
     def goToGo(player):
         player.pos = np.array([0,0])
@@ -58,5 +60,13 @@ class ChestTile(Tile):
         player.addMoney(10)
     def inheritMoney(player):
         player.addMoney(100)
-    
+    def draw(self, window: pygame.Surface, x: int, y: int):
+        """
+        Draws the tile onto a specified window.
+        """
+        pygame.draw.rect(
+            window,
+            self.COLORS[self.color],
+            (x, y, self.WIDTH, self.HEIGHT)
+        )
     

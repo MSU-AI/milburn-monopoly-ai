@@ -1,19 +1,17 @@
 from Tiles.Tile import Tile
-from Player import Player
-from Board import Board
 class UtilityTile(Tile):
     """
     Represents a utility tile on the board.
     """
     
-    def __init__(self, attributes: dict):
+    def __init__(self, attributes: dict, bank):
         """
         Initializes the utility tile.
         """
         super().__init__()
         self.space = attributes['Space']
         self.name = attributes['Name']
-        self.owner = "Bank"
+        self.owner = bank
         self.price = attributes['Price']
         self.mortgage_value = self.price/2
         self.is_mortgaged = False

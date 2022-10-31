@@ -1,16 +1,18 @@
-from Tile import Tile
-from Bank import Bank
-from Player import Player
+from Tiles.Tile import Tile
 
 class RailroadTile(Tile):
     """
     Represents a railroad tile on the board.
     """
     
-    def __init__(self, attributes: dict):
+    def __init__(self, attributes: dict, bank):
         """
         Initializes the railroad tile.
         """
+
+        
+        
+
         super().__init__()
         self.name = attributes["Name"]
         self.space = attributes['Space']
@@ -20,6 +22,7 @@ class RailroadTile(Tile):
         self.mortgage_value = self.price/2
         self.mortgage = False 
         self.owner = Bank
+
         self.trainstation_count = 0
       
     def calcRent(self):
@@ -29,13 +32,13 @@ class RailroadTile(Tile):
         #$25 for one; $50 for two, $100 for three; $200 for four
         if self.owner == Bank:
             return 0
-        elif trainstation_count == 0:
+        elif self.trainstation_count == 0:
             return 25
-        elif trainstation_count == 1:
+        elif self.trainstation_count == 1:
             return 50
-        elif trainstation_count == 2:
+        elif self.trainstation_count == 2:
             return 100
-        elif trainstation_count == 4:
+        elif self.trainstation_count == 4:
             return 200
         else:
             return 0

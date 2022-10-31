@@ -1,5 +1,5 @@
 from Tiles.Tile import Tile
-
+import pygame
 class TaxTile(Tile):
     """
     Represents a tax tile on the board.
@@ -10,6 +10,7 @@ class TaxTile(Tile):
         Initializes the tax tile.
         """
         self.owner = 'IRS'
+        self.color = 'Black'
         super().__init__()
  
     def incomeTax(self):

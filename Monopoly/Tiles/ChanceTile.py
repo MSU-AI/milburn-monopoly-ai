@@ -1,7 +1,9 @@
-import numpy as np
-from Tile import Tile
-from Player import Player
-from JailTile import JailTile
+
+from Tiles.Tile import Tile
+import pygame
+=======
+
+
 
 class ChanceTile(Tile):
     """
@@ -12,6 +14,11 @@ class ChanceTile(Tile):
         """
         Initializes the "Chance" tile.
         """
+
+        super().__init__()
+        
+        
+  
         self.deck = []
         self.players = np.array([])
         super().__init__()        
@@ -121,3 +128,4 @@ class ChanceTile(Tile):
     def crosswordWin(player):
         player.addMoney(100)
         
+

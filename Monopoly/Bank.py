@@ -9,14 +9,14 @@ class Bank:
     Represents the Monopoly bank.
     """
     def __init__(self):
-        self.ownedProperty = np.array()
+        self.ownedProperty = []
         self.houses = 32
         self.hotel = 12
     """
     This function gets called inside the Board, when it gets initialized
     """
     def startOfGameOwnerShip(self, property):
-        np.append(self.ownedProperty, property)
+        self.ownedProperty.append(self.ownedProperty, property)
     """
     Auction functionality
     """

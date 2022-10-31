@@ -31,13 +31,13 @@ class Board:
 
     FONT = pygame.font.SysFont('segoeui', 100)  # Title font
 
-    def __init__(self):
+    def __init__(self, bank, players):
         """
         Initializes the game board.
         """
         
-        
-            
+        self.players = players        
+        self.bank = bank    
         # Initializes board as a list of the board's sides and tiles.
         self.board = self.make_board()
         #Initializes the deck for the Community Chest
@@ -95,11 +95,11 @@ class Board:
                         padding + t * tile.HEIGHT
                     )
 
-    def make_board(self) -> list[list[Tile]]:
+    def make_board(self):
         """
         Reads board information from CSV file.
         """
-        data = pd.read_csv('Monopoly/Data/newboard.csv')
+        data = pd.read_csv('Data/newboard.csv')
         board = [ [], [], [], [] ]
 
         for index, row in data.iterrows():
@@ -110,23 +110,23 @@ class Board:
             #       changed to take attributes as an argument (see StreetTile).
 
             if row['Space'] == "Go":
-                board[side].append( GoTile() )
+                board[side].append( GoTile(attributes) )
             elif row['Space'] == "Street":
-                board[side].append( StreetTile(attributes) )
+                board[side].append( StreetTile(attributes, self.bank) )
             elif row['Space'] == "Chest":
-                board[side].append( ChestTile() )
+                board[side].append( ChestTile(attributes, self.players) )
             elif row['Space'] == "Tax":
-                board[side].append( TaxTile() )
+                board[side].append( TaxTile(attributes) )
             elif row['Space'] == "Railroad":
-                board[side].append( RailroadTile() )
+                board[side].append( RailroadTile(attributes, self.bank) )
             elif row['Space'] == "Chance":
-                board[side].append( ChanceTile() )
+                board[side].append( ChanceTile(attributes) )
             elif row['Space'] == "Jail":
                 board[side].append( JailTile() )
             elif row['Space'] == "Utility":
-                board[side].append( UtilityTile() )
+                board[side].append( UtilityTile(attributes, self.bank) )
             elif row['Space'] == "Parking":
-                board[side].append( ParkingTile() )
+                board[side].append( ParkingTile(attributes) )
             elif row['Space'] == "GoToJail":
                 board[side].append( GoToJailTile() )
             else:
