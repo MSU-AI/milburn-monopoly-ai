@@ -16,7 +16,9 @@ class Tile:
         'Yellow' : (255, 255, 51),
         'Green' : (0, 255, 0),
         'Blue' : (0, 128, 255),
-        'DarkGreen' : (5, 98, 36)
+        'DarkGreen' : (5, 98, 36),
+        'White' : (255, 255, 255),
+        'BabyBlue' : (158, 204, 255)
     }
 
     WIDTH, HEIGHT = 70, 70  # Tile size
@@ -34,7 +36,11 @@ class Tile:
         'Red' ,
         'Yellow' ,
         'Green' ,
-        'Blue']
+        'Blue', 
+        'White', 
+        'DarkGreen',
+        'BabyBlue',
+        'Red']
         self.group = self.group_list.index(self.color)
         
     def goJail(player):

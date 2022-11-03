@@ -10,10 +10,13 @@ class ParkingTile(Tile):
         """
         Initializes the "Free Parking" tile.
         """
-        super().__init__()
+        
         self.name = attributes['Name']
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]
-        self.color  = 'LightBlue'
+        self.color  = 'BabyBlue'
+        self.type = attributes['Space']
+        self.owner = "Bank"
+        super().__init__()
     def draw(self, window: pygame.Surface, x: int, y: int):
         """
         Draws the tile onto a specified window.

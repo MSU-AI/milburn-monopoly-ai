@@ -9,9 +9,12 @@ class ChanceTile(Tile):
         """
         Initializes the "Chance" tile.
         """
-        super().__init__()
+        
         self.color = 'Blue'
         self.name = '?'
+        self.type = attributes['Space']
+        self.owner = "Bank"
+        super().__init__()
         
     def drawCard(self):
         #where a random card will be draw by the player

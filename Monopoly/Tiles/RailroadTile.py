@@ -22,6 +22,7 @@ class RailroadTile(Tile):
         self.owner = bank
         self.trainstation_count = 0
         self.color = 'Red'
+        self.type = attributes['Space']
         super().__init__()
       
     def calcRent(self):

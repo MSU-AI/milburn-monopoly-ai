@@ -36,8 +36,9 @@ class Board:
         Initializes the game board.
         """
         
+        
         self.players = players
-        self.groups = dict()        
+        self.group = dict()        
         self.bank = bank    
         # Initializes board as a list of the board's sides and tiles.
         self.board = self.make_board()
@@ -111,30 +112,76 @@ class Board:
             #       changed to take attributes as an argument (see StreetTile).
 
             if row['Space'] == "Go":
-                board[side].append( GoTile(attributes, len(self.players)) )
+                tile =GoTile(attributes, len(self.players))
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "Street":
                 tile = StreetTile(attributes, self.bank)
                 board[side].append(tile)
-                if(board.group[attributes['Color']]):
-                    board.group[attributes['Color']].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
                 else:
-                    board.group[attributes['Color']] = [tile]
+                    self.group[attributes['Color']] = [tile]
+            
             elif row['Space'] == "Chest":
-                board[side].append( ChestTile(attributes, self.players) )
+                tile = ChestTile(attributes, self.players)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "Tax":
-                board[side].append( TaxTile(attributes) )
+                tile = TaxTile(attributes)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "Railroad":
-                board[side].append( RailroadTile(attributes, self.bank) )
+                tile = RailroadTile(attributes, self.bank)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "Chance":
-                board[side].append( ChanceTile(attributes) )
+                tile = ChanceTile(attributes)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "Jail":
-                board[side].append( JailTile() )
+                tile = JailTile(attributes)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "Utility":
-                board[side].append( UtilityTile(attributes, self.bank) )
+                tile = UtilityTile(attributes, self.bank)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "Parking":
-                board[side].append( ParkingTile(attributes) )
+                tile = ParkingTile(attributes)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             elif row['Space'] == "GoToJail":
-                board[side].append( GoToJailTile() )
+                tile = GoToJailTile(attributes)
+                board[side].append(tile)
+                if(attributes['Color'] in self.group):
+                    self.group[attributes['Color']].append(tile)
+                else:
+                    self.group[attributes['Color']] = [tile]
             else:
                 raise KeyError(f"Invalid tile type in CSV: {row['Space']}")
         

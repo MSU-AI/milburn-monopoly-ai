@@ -1,7 +1,7 @@
 class Actions:
     
     def __init__(self, player, bank):
-        self.player = self.player
+        self.player = player
         self.bank = bank
 
     def buyProperty(self, tile):
@@ -46,7 +46,7 @@ class Actions:
                         min_t = t
                         if(self.player.balance >= t.price_build):
                             self.player.payMoney(t.price_build)
-                            t.addHouse()
+                            t.addHouse(self.player)
                             return True
                         else:
                             return False

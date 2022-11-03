@@ -8,8 +8,8 @@ class UtilityTile(Tile):
         """
         Initializes the utility tile.
         """
-        super().__init__()
-        self.space = attributes['Space']
+        
+        self.type = attributes['Space']
         self.name = attributes['Name']
         self.owner = bank
         self.price = attributes['Price']
@@ -18,6 +18,7 @@ class UtilityTile(Tile):
         #self.position = attributes['Position(X)', 'Position(Y)']
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]
         self.color = 'DarkGreen'
+        super().__init__()
     
     #sets ownwer to player
     def setOwner(self, player):

@@ -1,5 +1,5 @@
 import random
-from Actions import Action
+from Actions import Actions
 import pygame
 import numpy as np
 class Player:
@@ -26,7 +26,8 @@ class Player:
             if property.is_mortgaged == False:
                 self.property_value += property.getMortVal()
     def getWorth(self):
-        self.worth = self.balance + self.calculate_properties_value()
+        self.calculate_properties_value()
+        self.worth = self.balance
         return self.worth
     def getCurrentGroup(self, board):
         tile = board.board[self.position[0]][self.position[1]]

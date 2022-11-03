@@ -18,22 +18,8 @@ class StreetTile(Tile):
         self.house_count = 0
         self.hotel_count = 0
         self.color = attributes['Color']
-        self.group_list = ['Black' ,'Brown' ,\
-        'LightBlue' ,
-        'Pink' ,
-        'Orange' ,
-        'Red' ,
-        'Yellow' ,
-        'Green' ,
-        'Blue']
-        self.group = self.group_list.index(self.color) + 1
-        self.rent = [attributes['Rent'], 
-            attributes['RentBuild1'],
-            attributes['RentBuild2'],
-            attributes['RentBuild3'],
-            attributes['RentBuild4'],
-            attributes['RentBuild5']
-            ]
+        
+        
         self.price_build = attributes['PriceBuild']
         
         self.owner = bank
@@ -64,7 +50,7 @@ class StreetTile(Tile):
         
         if validity:
             
-            if (other_tiles == 1):
+            if (len(other_tiles) == 1):
                 if(((self.house_count + 1) - other_tiles[0].house_count <= 1) and (self.house_count + 1 <= 4)):
                     if(self.hotel_count == 0):
                         return True
@@ -93,7 +79,7 @@ class StreetTile(Tile):
             else:
                 if tile != self:
                     other_tiles.append(tile)
-            if (self.color_group == 'Blue' or self.color_group == 'Brown'):
+            if (self.color == 'Blue' or self.color == 'Brown'):
                     if((self.house_count ==4 ) and (other_tiles[0].house_count == 4 
                     or other_tiles[0].hotel_count == 1)):
                         return True
@@ -116,22 +102,22 @@ class StreetTile(Tile):
         # red & yellow: $150/house
         # green & blue: $200/house
         if self.house_count != 0:
-            if self.color_group == 'Brown' or self.color_group == 'LightBlue':
+            if self.color == 'Brown' or self.color == 'LightBlue':
                 return self.price + self.house_count * 50 / 2
-            elif self.color_group == 'Purple' or self.color_group == 'Orange':
+            elif self.color == 'Purple' or self.color == 'Orange':
                 return self.price + self.house_count * 100 / 2
-            elif self.color_group == 'Red' or self.color_group == 'Pink':
+            elif self.color == 'Red' or self.color== 'Pink':
                 return self.price + self.house_count * 150 / 2
             else:
                 return self.price + self.house_count * 200 / 2
 
         # worth of a property if it has 1 hotel (cost of 1 hotel = 1 house)
         elif self.house_count == 0 and self.hotel_count == 1:
-            if self.color_group == 'Brown' or self.color_group == 'LightBlue':
+            if self.color == 'Brown' or self.color == 'LightBlue':
                 return self.price + (self.house_count + 1) * 50 / 2
-            elif self.color_group == 'Purple' or self.color_group == 'Orange':
+            elif self.color == 'Purple' or self.color == 'Orange':
                 return self.price + (self.house_count + 1) * 100 / 2
-            elif self.color_group == 'Red' or self.color_group == 'Yellow':
+            elif self.color == 'Red' or self.color == 'Yellow':
                 return self.price + (self.house_count + 1) * 150 / 2
             else:
                 return self.price + (self.house_count + 1) * 200 / 2
@@ -154,7 +140,7 @@ class StreetTile(Tile):
 
     def addHouse(self, player):
         self.house_count += 1
-        player.bank.sellHouse()
+        player.bank.sellHouse(4)
 
         
     def sellHotel(self, player):

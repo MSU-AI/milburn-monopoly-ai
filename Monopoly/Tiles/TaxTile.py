@@ -12,6 +12,7 @@ class TaxTile(Tile):
         self.owner = 'IRS'
         self.color = 'Black'
         self.name = attributes['Name']
+        self.type = attributes['Space']
         super().__init__()
         
     def draw(self, window: pygame.Surface, x: int, y: int):

@@ -17,6 +17,8 @@ class ChestTile(Tile):
         self.players = players
         self.color = 'DarkGreen'
         self.name = 'Chance'
+        self.type = attributes['Space']
+        self.owner = "Bank"
         super().__init__()
     def goToGo(player):
         

@@ -12,12 +12,14 @@ class Agent(Player):
     def __init__(self, board, bank):
         self.epoch = 0
         self.games = 0
-        self.model = QNet(3, 150, 3)
+        self.model = QNet(4, 150, 3)
+        self.trainer = QTrainer(self.model, learning_rate, 0.9)
         self.memory = deque(maxlen=1000000)
-        self.action = Action()
+        
     def getState(self, player, board):
         tile = board[player.position[0]][player.position[1]]
-        state = [player.worth, player.position, tile.group]
+        state = [player.worth, player.position[0], player.position[1], tile.group]
+        #print(state)
         return np.array(state, dtype = int)
     def getAction(self, state):
         self.epsilon = 100 - self.games
@@ -43,15 +45,7 @@ class Agent(Player):
         self.trainer.train_step(states, actions, rewards, next_states, dones)
     def train_short_memory(self, state, action, reward, next_state, done):
         self.trainer.train_step(state, action, reward, next_state, done)
-    def train():
-        worth = []
-
-        agent = Agent()
-        game = Game()
-        while True:
-
-            state_old = agent.getState()
-            final_move = agent.getAction(state_old)
+    
             
 
 
