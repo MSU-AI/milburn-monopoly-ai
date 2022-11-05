@@ -12,7 +12,7 @@ class RailroadTile(Tile):
 
         
 
-        super().__init__()
+        
         self.name = attributes["Name"]
         self.space = attributes['Space']
         self.price = attributes['Price']
@@ -24,7 +24,7 @@ class RailroadTile(Tile):
         self.bank = bank
         self.color = 'Red'
         self.type = attributes['Space']
-
+        super().__init__()
         self.trainstation_count = 0
       
     def calcRent(self):
