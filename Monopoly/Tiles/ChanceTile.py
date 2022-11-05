@@ -1,7 +1,7 @@
 
 from Tiles.Tile import Tile
 import pygame
-=======
+
 
 
 
@@ -15,8 +15,12 @@ class ChanceTile(Tile):
         Initializes the "Chance" tile.
         """
 
-        super().__init__()
         
+        self.color = 'Blue'
+        self.name = '?'
+        self.type = attributes['Space']
+        self.owner = "Bank"
+        super().__init__()
         
   
         self.deck = []

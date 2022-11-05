@@ -10,42 +10,37 @@ class StreetTile(Tile):
     def __init__(self,attributes, bank):
         self.name = attributes['Name']
         self.price = attributes['Price']
+        
         self.mortgage_value = self.price / 2
         self.is_mortgaged = False
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]
+        self.type = attributes['Space']
         self.house_count = 0
         self.hotel_count = 0
-        self.rent = [attributes['Rent'], 
-            attributes['RentBuild1'],
-            attributes['RentBuild2'],
-            attributes['RentBuild3'],
-            attributes['RentBuild4'],
-            attributes['RentBuild5']
-            ]
-        self.price_build = attributes['PriceBuild']
         self.color = attributes['Color']
+        
+        self.rent = [attributes['Rent'],
+        attributes['RentBuild1'],
+        attributes['RentBuild2'],
+        attributes['RentBuild3'],
+        attributes['RentBuild4'],
+        attributes['RentBuild5']
+        ]
+        self.price_build = attributes['PriceBuild']
+        
         self.owner = bank
         super().__init__()
     # set the owner to a Player object
     def setOwner(self, player):
         self.owner = player
-
     """
     This function will be used to check all available houses to build a house on
     """
-    def draw(self, window: pygame.Surface, x: int, y: int):
-        """
-        Draws the tile onto a specified window.
-        """
-        pygame.draw.rect(
-            window,
-            self.COLORS[self.color],
-            (x, y, self.WIDTH, self.HEIGHT)
-        )
-    def addHouseValidity(self, board):
+    
+    def checkAddHouseValidity(self, board):
         validity = True
         other_tiles = []
-        for tile in board.color_groups[self.color_group]:
+        for tile in board.group[self.color]:
             
             if(tile.owner != self.owner):
                 validity = False
@@ -55,7 +50,7 @@ class StreetTile(Tile):
         
         if validity:
             
-            if (other_tiles == 1):
+            if (len(other_tiles) == 1):
                 if(((self.house_count + 1) - other_tiles[0].house_count <= 1) and (self.house_count + 1 <= 4)):
                     if(self.hotel_count == 0):
                         return True
@@ -72,19 +67,19 @@ class StreetTile(Tile):
 
 
     """
-    Checks for all the tiles where a hotel can be built
+    Checks for all the tiles where a hotel can be built/sold
     """
     def addHotelValidity(self, board):
         validity = True
         other_tiles = []
-        for tile in board.color_groups[self.color_group]:
+        for tile in board.group[self.color]:
             
             if(tile.owner != self.owner):
                 validity = False
             else:
                 if tile != self:
                     other_tiles.append(tile)
-            if (self.color_group == 'Blue' or self.color_group == 'Brown'):
+            if (self.color == 'Blue' or self.color == 'Brown'):
                     if((self.house_count ==4 ) and (other_tiles[0].house_count == 4 
                     or other_tiles[0].hotel_count == 1)):
                         return True
@@ -107,22 +102,22 @@ class StreetTile(Tile):
         # red & yellow: $150/house
         # green & blue: $200/house
         if self.house_count != 0:
-            if self.color_group == 'Brown' or self.color_group == 'LightBlue':
+            if self.color == 'Brown' or self.color == 'LightBlue':
                 return self.price + self.house_count * 50 / 2
-            elif self.color_group == 'Purple' or self.color_group == 'Orange':
+            elif self.color == 'Purple' or self.color == 'Orange':
                 return self.price + self.house_count * 100 / 2
-            elif self.color_group == 'Red' or self.color_group == 'Pink':
+            elif self.color == 'Red' or self.color== 'Pink':
                 return self.price + self.house_count * 150 / 2
             else:
                 return self.price + self.house_count * 200 / 2
 
         # worth of a property if it has 1 hotel (cost of 1 hotel = 1 house)
         elif self.house_count == 0 and self.hotel_count == 1:
-            if self.color_group == 'Brown' or self.color_group == 'LightBlue':
+            if self.color == 'Brown' or self.color == 'LightBlue':
                 return self.price + (self.house_count + 1) * 50 / 2
-            elif self.color_group == 'Purple' or self.color_group == 'Orange':
+            elif self.color == 'Purple' or self.color == 'Orange':
                 return self.price + (self.house_count + 1) * 100 / 2
-            elif self.color_group == 'Red' or self.color_group == 'Yellow':
+            elif self.color == 'Red' or self.color == 'Yellow':
                 return self.price + (self.house_count + 1) * 150 / 2
             else:
                 return self.price + (self.house_count + 1) * 200 / 2
@@ -131,7 +126,7 @@ class StreetTile(Tile):
         else:
             return self.price
 
-    def sellHouse(self, player, n):
+    def sellHouse(self, player, n = 1):
         if self.house_count - n >= 0:
             self.house_count -= n
             player.bank.addHouse(n)
@@ -140,24 +135,29 @@ class StreetTile(Tile):
     def addHotel(self, player):
         self.house_count = 0
         self.hotel_count = 1
-        player.payMoney(self.price_build)
         player.bank.addHouse(4)
+        player.bank.sellHotel()
 
     def addHouse(self, player):
         self.house_count += 1
-        player.payMoney(self.price_build)
-        player.bank.sellHouse()
+        player.bank.sellHouse(4)
+
+        
     def sellHotel(self, player):
         self.hotel_count = 0
         player.addMoney(self.price_build / 2)
         player.bank.addHotel()
+        self.house_count = 4
+        player.bank.sellHouse(4)
 
     def mortgage(self, player):
-        if self.house_count == 0 and self.hotel_count == 0:
-            self.is_mortgaged = True
-            player.addMoney(self.mortgage_value)
-        else:
-            return False
+        
+        player.addMoney(self.mortgage_value)
+        player.bank.addHouse(self.house_count)
+        player.bank.addHotel(self.hotel_count)
+        self.is_mortgaged = True
+        self.house_count = 0
+        self.hotel_count = 0
 
     def unMortgage(self, player):
         self.is_mortgaged = False
@@ -168,3 +168,12 @@ class StreetTile(Tile):
             return self.rent[self.house_count]
         elif self.hotel_count == 1:
             return self.rent[-1]
+    def Bankruptcy(self, bank):
+        bank.addHouse(self.house_count)
+        bank.addHotel(self.hotel_count)
+        self.setOwner(bank)
+        self.house_count = 0
+        self.hotel_count = 0
+    def getMortVal(self):
+        return self.mortgage_value + self.house_count * self.price_build / 2 + self.hotel_count * self.price_build / 2
+        

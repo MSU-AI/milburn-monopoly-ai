@@ -8,8 +8,8 @@ class UtilityTile(Tile):
         """
         Initializes the utility tile.
         """
-        super().__init__()
-        self.space = attributes['Space']
+        
+        self.type = attributes['Space']
         self.name = attributes['Name']
         self.owner = bank
         self.price = attributes['Price']
@@ -17,6 +17,8 @@ class UtilityTile(Tile):
         self.is_mortgaged = False
         #self.position = attributes['Position(X)', 'Position(Y)']
         self.position = [attributes['Position(X)'], attributes['Position(Y)']]
+        self.color = 'DarkGreen'
+        super().__init__()
     
     #sets ownwer to player
     def setOwner(self, player):
@@ -42,3 +44,16 @@ class UtilityTile(Tile):
     def unMortgage(self):
         self.is_mortgaged = False
         return self.mortgage_value * 1.1
+    def calcRent(self):
+        #electric = self.board[1][2]
+        #water = self.board[2][8]
+        #if electric.owner == water.owner:
+          #  currentTile.getRent(player,diceroll * 10)
+        #else:
+         #   currentTile.getRent(player,diceroll * 4)
+        return 50
+    def Bankruptcy(self, bank):
+        
+        self.setOwner(bank)
+    def getMortVal(self):
+        return self.mortgage_value

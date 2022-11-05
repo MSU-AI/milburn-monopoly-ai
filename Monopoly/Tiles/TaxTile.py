@@ -11,6 +11,8 @@ class TaxTile(Tile):
         """
         self.owner = 'IRS'
         self.color = 'Black'
+        self.name = attributes['Name']
+        self.type = attributes['Space']
         super().__init__()
  
     def incomeTax(self):
