@@ -5,12 +5,17 @@ class Actions:
         self.bank = bank
 
     def buyProperty(self, tile):
+        #print(tile.owner)
+        #print(self.player.bank)
         if ((tile.type != 'Street') or (tile.type != '') or (tile.type != 'Railroad')\
             or (tile.type != 'Utility')):
             if(tile.owner == self.player):
                 return False
+            
             elif(tile.owner == self.player.bank):
+
                 if(self.player.balance >= tile.price):
+                    #print('Bought')
                     self.player.properties.append(tile)
                     tile.setOwner(self.player)
                     self.player.payMoney(tile.price)
@@ -28,9 +33,9 @@ class Actions:
                 if tile.is_mortgaged == False:
                     return False
                 else:
-                    if(self.player.balance >= tile.unMortgage()):
+                    if(self.player.balance >= tile.unMortgage(self.player)):
                         
-                        self.player.balance.payMoney(tile.unMortgage())
+                        self.player.payMoney(tile.unMortgage(self.player))
                         return True
                     else:
                         return False
@@ -88,13 +93,14 @@ class Actions:
                         if(tile.mortgage_value >= max_p):
                             max_p = tile.mortgage_value
                             max_t = t
-                    t.mortgage()
+                    t.mortgage(self.player)
                     return True
     def sellHouse(self, tile, board, group):
         max_t = 0
         t_sell = 0
+        indx = tile.group_list[group]
         if(tile.isCompletedGroup(board, self.player)):
-            for t in board.group[group]:
+            for t in board.group[indx]:
                 if(t.house_count >= max_t):
                     max_t = t.house_count
                     t_sell = t
@@ -107,8 +113,9 @@ class Actions:
     def sellHotel(self, tile, board, group):
         max_t = 0
         t_sell = 0
+        indx = tile.group_list[group]
         if(tile.isCompletedGroup(board, self.player)):
-            for t in board.group[group]:
+            for t in board.group[indx]:
                 if(t.hotel_count >= max_t):
                     max_t = t.house_count
                     t_sell = t

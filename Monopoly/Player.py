@@ -27,7 +27,7 @@ class Player:
                 self.property_value += property.getMortVal()
     def getWorth(self):
         self.calculate_properties_value()
-        self.worth = self.balance
+        self.worth = self.balance + self.property_value
         return self.worth
     def getCurrentGroup(self, board):
         tile = board.board[self.position[0]][self.position[1]]
@@ -51,6 +51,8 @@ class Player:
         dice1 = random.randint(1,6)
         dice2 = random.randint(1,6)
         self.movecount = dice1+dice2
+    def getBalance(self):
+        return self.balance
 
     def addMoney(self, money):
         self.balance += money  

@@ -19,7 +19,13 @@ class StreetTile(Tile):
         self.hotel_count = 0
         self.color = attributes['Color']
         
-        
+        self.rent = [attributes['Rent'],
+        attributes['RentBuild1'],
+        attributes['RentBuild2'],
+        attributes['RentBuild3'],
+        attributes['RentBuild4'],
+        attributes['RentBuild5']
+        ]
         self.price_build = attributes['PriceBuild']
         
         self.owner = bank
@@ -30,13 +36,7 @@ class StreetTile(Tile):
     """
     This function will be used to check all available houses to build a house on
     """
-    def isCompletedGroup(self, board, player):
-        b = True
-        for tile in board.group[self.color]:
-            if(tile.owner  != player):
-                b = False
-            
-        return b
+    
     def checkAddHouseValidity(self, board):
         validity = True
         other_tiles = []

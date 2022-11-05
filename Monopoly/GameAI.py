@@ -1,4 +1,5 @@
 from re import L
+import matplotlib.pyplot as plt
 from Bank import Bank
 from Board import Board
 from Player import Player
@@ -79,16 +80,6 @@ class Game:
         pygame.display.update()
     def initBoard(self):
         self.board = Board(self.bank, self.players)
-    #Needed to access the position of the tiles so I can calculate the rent correctly for the utility tiles
-    """
-    def compareUtilites(self):
-        electric = self.board[1][2]
-        water = self.board[2][8]
-        if electric.owner == water.owner:
-            currentTile.getRent(player,diceroll * 10)
-        else:
-            currentTile.getRent(player,diceroll * 4)
-            """
     def initPlayers(self):
         
         self.players = []
@@ -99,13 +90,16 @@ class Game:
             player = Player(name, 1200, self.bank)
             self.players.append(player)
     def playerBankrupt(self, player):
-        for row in player.properties:
-            for tile in row:
-                if(tile != 0):
-                    tile.Bankruptcy(self.bank)
-                    self.players.remove(player)
-                    self.bank.auctionProperty(tile, self.players)
-    
+        for tile in player.properties:
+            
+            
+            tile.Bankruptcy(self.bank)
+        self.players.remove(player)
+                
+    """
+    Step function that runs actions on each turn
+    """
+    # TODO: For Mateja, Implement all the rules for the env
     def step(self, player, agent, n):
         done = False
         if (player.checkBankruptcy()) or (n >= 200):
@@ -118,22 +112,25 @@ class Game:
             action= agent.getAction(state_old)
             
 
-            self.actions[n%2].recieveAction([action])
+            self.actions[n%2].recieveAction(action)
             state_new = agent.getState(player, self.board.board)
-            reward = player.possibleRent()
+            # TODO: Choose a better reward system
+            reward = player.possibleRent() #Calculates the reward 
+            
             agent.train_short_memory(state_old, action, reward, state_new, done)
-            agent.remember(state_old, action[0], reward, state_new, done)
+            agent.remember(state_old, action, reward, state_new, done)
         return done
         
     
 
 
-        
+    """DONT LOOK AT THIS PLEASE"""   
     def defActions(self):
         self.actions = []
         for player in self.players:
             action = Action(player, self.board, self.bank)
             self.actions.append(action)
+    """Resets everything when the game is finished"""
     def reset(self):
         self.initPlayers()
         self.initBoard()
@@ -141,7 +138,7 @@ class Game:
         self.bank = Bank()
         
     def getWinnerScore(self, players):
-        return players[0].getWorth()
+        return [players[0].getBalance(), players[0].getWorth()]
 
         
 # TODO : Add function for rolling dices to determine who goes first
@@ -150,7 +147,10 @@ def main():
     game = Game()
     record = 0
     score = 0
+    score2 = 0
+    scores2 = []
     mean_score = []
+    games = []
     scores = []
     total = 0
     game.initPlayers()
@@ -158,55 +158,37 @@ def main():
     n = 2
     agent = Agent(game.board.board, game.bank)
     game.defActions()
+    i = 0
     while True:
+        
+        
         done = False
         
         
-        #print(game.players)
-        game.players[n%2].move()
+        
+        game.players[n%2].move() #It works, that is all that matters
         done = game.step(game.players[n%2], agent, n)
         n += 1
         
 
 
         if done:
-            print(agent.games)
+            
             n = 2
-            game.reset()
+            score, score2 = game.getWinnerScore(game.players)
+            
             agent.games += 1
-            score = game.getWinnerScore(game.players)
+            game.reset()
             agent.trainLongMemory()
-            if(score > record):
-                record = score
+            if(score2 > record):
+                record = score2
                 agent.model.save()
             scores.append(score)
-            total += score
-            mean_score.append(total / agent.games)
-            plot(scores, mean_score)
+            scores2.append(score2) 
+            
+            games.append(agent.games)
+            plot(games, scores, scores2)
+            
 
-
-
-
-        
-                
-                
-                
-                    
-
-
-            # Event Loop -- all events (like key presses) are processed here
-            for event in pygame.event.get():
-                    
-                    # On quit
-                    
-                        
-
-                    
-                    
-                if event.type == pygame.QUIT:
-                    running = False
-        
-        pygame.quit()
-                
 if __name__ == "__main__":
     main()

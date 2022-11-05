@@ -44,3 +44,16 @@ class UtilityTile(Tile):
     def unMortgage(self):
         self.is_mortgaged = False
         return self.mortgage_value * 1.1
+    def calcRent(self):
+        #electric = self.board[1][2]
+        #water = self.board[2][8]
+        #if electric.owner == water.owner:
+          #  currentTile.getRent(player,diceroll * 10)
+        #else:
+         #   currentTile.getRent(player,diceroll * 4)
+        return 50
+    def Bankruptcy(self, bank):
+        
+        self.setOwner(bank)
+    def getMortVal(self):
+        return self.mortgage_value

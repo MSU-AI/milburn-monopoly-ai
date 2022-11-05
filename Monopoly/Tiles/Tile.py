@@ -51,6 +51,13 @@ class Tile:
         self.players_on_tile -= 1
     def getPlayerOnTile(self):
         return self.players_on_tile
+    def isCompletedGroup(self, board, player):
+        b = True
+        for tile in board.group[self.color]:
+            if(tile.owner  != player):
+                b = False
+            
+        return b
         
 
     def draw(self, window: pygame.Surface, x: int, y: int):

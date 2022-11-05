@@ -18,9 +18,12 @@ class RailroadTile(Tile):
         self.Position_Y = attributes["Position(Y)"]
         self.Rent = attributes["Rent"]
         self.Mortgage = False 
-        
+        self.price = attributes['Price']
         self.owner = bank
+        self.bank = bank
         self.trainstation_count = 0
+        self.is_mortgaged = False
+        self.mortgage_value = self.price * 0.5
         self.color = 'Red'
         self.type = attributes['Space']
         super().__init__()
@@ -30,7 +33,7 @@ class RailroadTile(Tile):
         #Each Railroad costs a base price of $200
         #Rent is contingent upon how many railroads that player owns
         #$25 for one; $50 for two, $100 for three; $200 for four
-        if self.owner == Bank:
+        if self.owner == self.bank:
             return 0
         elif self.trainstation_count == 0:
             return 25
@@ -49,6 +52,7 @@ class RailroadTile(Tile):
    
     def unMortgage(self):
        self.mortage = False
+       return self.price * 1.1
     
     def buyTrainStation(self):
         #Purchase Train Station Tile
@@ -64,3 +68,9 @@ class RailroadTile(Tile):
     def setOwner(self, Player):
         #Applies ownership of Train Station Property to player
         self.owner = Player
+    def Bankruptcy(self, bank):
+        
+        self.setOwner(bank)
+    def getMortVal(self):
+        return self.mortgage_value 
+        

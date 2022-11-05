@@ -11,21 +11,24 @@ class Action:
 
     def recieveAction(self, pactions):
         #print(pactions[0][0])
-        self.action = pactions[0][0].index(1)
-        self.group = pactions[0][1]
+        
+        self.action = pactions.index(1)
+        self.group = self.player.getCurrentGroup(self.board)
         tile = self.board.board[self.player.position[0]][self.player.position[1]]
         
-        if (self.action == 1):
+        if (self.action == 0):
+            
             if ((tile.type == 'Street') or  (tile.type == 'Railroad')\
             or (tile.type == 'Utility')):
-                if(tile.color == self.group):
-            
+                
+                if(tile.color == tile.group_list[self.group]):
+                    
                     self.spendOnTile(tile)
                 else:
                     self.spendOnGroup(tile)
             else:
                 self.spendOnGroup(tile)
-        elif(self.action ==  -1):
+        elif(self.action ==  1):
             self.getMoneyFromGroup(tile)
         
 

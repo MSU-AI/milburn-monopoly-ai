@@ -5,16 +5,23 @@ import torch.nn.functional as F
 import os
 
 class QNet(nn.Module):
+    """
+    Creates Feed forward neural network
+    """
     def __init__(self, input_size, hidden_size, output_size):
         super().__init__()
         self.linear1 = nn.Linear(input_size, hidden_size)
         self.linear2 = nn.Linear(hidden_size, output_size)
-
+    """
+    Feeds our state to the network and returns the action    
+    """
     def forward(self, x):
         x = F.relu(self.linear1(x))
         x = self.linear2(x)
         return x
-
+    """
+    Saves the model so when you run the  code again it will use the saved model
+    """
     def save(self, file_name='model.pth'):
         model_folder_path = './model'
         if not os.path.exists(model_folder_path):
@@ -31,14 +38,15 @@ class QTrainer:
         self.model = model
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr)
         self.criterion = nn.MSELoss()
-        #Qnew(state, action) = Qcurrent(s,a) + learning_rate[R(s, a) + gamma * maxQ'[s', a'] - Q(s, a)]
-        #(Qnew - Qcurrent)^2 = MSE
-
+    """
+    Training the model by using backpropagation that tries to find the local minimum
+    of the loss function
+    """    
     def train_step(self, state, action, reward, next_state, done):
         state = torch.tensor(state, dtype=torch.float)
         next_state = torch.tensor(next_state, dtype=torch.float)
         #print(action)
-        action = torch.tensor(action[0], dtype=torch.long)
+        action = torch.tensor(action, dtype=torch.long)
         reward = torch.tensor(reward, dtype=torch.float)
         # (n, x)
 
@@ -61,12 +69,10 @@ class QTrainer:
             if not done[idx]:
                 Q_new = reward[idx] + self.gamma * torch.max(self.model(next_state[idx]))
 
-            
+            #print(action)
             target[idx][torch.argmax(action[idx]).item()] = Q_new
     
-        # 2: Q_new = r + y * max(next_predicted Q value) -> only do this if not done
-        # pred.clone()
-        # preds[argmax(action)] = Q_new
+        
         self.optimizer.zero_grad()
         loss = self.criterion(target, pred)
         loss.backward()
